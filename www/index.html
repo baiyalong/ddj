@@ -1,116 +1,151 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>XX在线设计系统</title>
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script type="text/javascript" src="/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/script/user.js"></script>
+    <script type="text/javascript" src="/script/project.js"></script>
+    <script type="text/javascript" src="/script/event.js"></script>
+</head>
+<body>
+<div id="loginDialog">
+    <table>
+        <tr>
+            <td>帐号:</td>
+            <td><input name="name" type="text" class="f1 easyui-textbox"></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input name="password" type="password" class="f1 easyui-textbox"></td>
+        </tr>
+    </table>
+</div>
+<div class="easyui-layout">
+    <div data-options="region:'north'" style="height: 30px">
+        <div class="easyui-panel">
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm0'">文件</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm1'">工具</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm2'">视图</a>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">帮助</a>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-    <head>
-        <title>Test Page for the Nginx HTTP Server on Fedora</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <style type="text/css">
-            /*<![CDATA[*/
-            body {
-                background-color: #fff;
-                color: #000;
-                font-size: 0.9em;
-                font-family: sans-serif,helvetica;
-                margin: 0;
-                padding: 0;
-            }
-            :link {
-                color: #c00;
-            }
-            :visited {
-                color: #c00;
-            }
-            a:hover {
-                color: #f50;
-            }
-            h1 {
-                text-align: center;
-                margin: 0;
-                padding: 0.6em 2em 0.4em;
-                background-color: #294172;
-                color: #fff;
-                font-weight: normal;
-                font-size: 1.75em;
-                border-bottom: 2px solid #000;
-            }
-            h1 strong {
-                font-weight: bold;
-                font-size: 1.5em;
-            }
-            h2 {
-                text-align: center;
-                background-color: #3C6EB4;
-                font-size: 1.1em;
-                font-weight: bold;
-                color: #fff;
-                margin: 0;
-                padding: 0.5em;
-                border-bottom: 2px solid #294172;
-            }
-            hr {
-                display: none;
-            }
-            .content {
-                padding: 1em 5em;
-            }
-            .alert {
-                border: 2px solid #000;
-            }
+            <a id="logout" href="#" style="float:right;text-decoration:none;font-weight:bold;margin:6px"
+               onclick="user.logout()"></a>
+            <a id="changePassword" href="#" style="float:right;text-decoration:none;font-weight:bolder;margin:6px"
+               onclick="user.changePassword()"></a>
 
-            img {
-                border: 2px solid #fff;
-                padding: 2px;
-                margin: 2px;
-            }
-            a:hover img {
-                border: 2px solid #294172;
-            }
-            .logos {
-                margin: 1em;
-                text-align: center;
-            }
-            /*]]>*/
-        </style>
-    </head>
+            <div id="userName" style="float:right;font-weight:bold;margin:6px"></div>
+        </div>
+        <div id="mm0" style="width: 150px;">
+            <div id="newProject">新建项目</div>
+            <div id="openProject">打开项目</div>
+            <div id="saveProject">保存项目</div>
+            <div>另存为</div>
+            <div class="menu-sep"></div>
+            <div id="newDesign">新建设计</div>
+            <div>删除设计</div>
+            <div>重命名设计</div>
+            <div class="menu-sep"></div>
+            <div>退出</div>
+        </div>
+        <div id="mm1" style="width:150px;">
+            <div data-options="iconCls:'icon-undo'">Undo</div>
+            <div data-options="iconCls:'icon-redo'">Redo</div>
+            <div class="menu-sep"></div>
+            <div>Cut</div>
+            <div>Copy</div>
+            <div>Paste</div>
+            <div class="menu-sep"></div>
+            <div>
+                <span>Toolbar</span>
 
-    <body>
-        <h1>Welcome to <strong>nginx</strong> on Fedora!</h1>
-
-        <div class="content">
-            <p>This page is used to test the proper operation of the
-            <strong>nginx</strong> HTTP server after it has been
-            installed. If you can read this page, it means that the
-            web server installed at this site is working
-            properly.</p>
-
-            <div class="alert">
-                <h2>Website Administrator</h2>
-                <div class="content">
-                    <p>This is the default <tt>index.html</tt> page that
-                    is distributed with <strong>nginx</strong> on
-                    Fedora.  It is located in
-                    <tt>/usr/share/nginx/html</tt>.</p>
-
-                    <p>You should now put your content in a location of
-                    your choice and edit the <tt>root</tt> configuration
-                    directive in the <strong>nginx</strong>
-                    configuration file
-                    <tt>/etc/nginx/nginx.conf</tt>.</p>
-
+                <div>
+                    <div>Address</div>
+                    <div>Link</div>
+                    <div>Navigation Toolbar</div>
+                    <div>Bookmark Toolbar</div>
+                    <div class="menu-sep"></div>
+                    <div>New Toolbar...</div>
                 </div>
             </div>
+            <div data-options="iconCls:'icon-remove'">Delete</div>
+            <div>Select All</div>
+        </div>
+        <div id="mm2" style="width:100px;">
+            <div>Help</div>
+            <div>Update</div>
+            <div>About</div>
+        </div>
+        <div id="mm3" class="menu-content" style="background: #f0f0f0; padding: 10px; text-align: left">
+            <img src="http://www.jeasyui.com/images/logo1.png" style="width: 150px; height: 50px">
 
-            <div class="logos">
-                <a href="http://nginx.net/"><img
-                    src="nginx-logo.png" 
-                    alt="[ Powered by nginx ]"
-                    width="121" height="32" /></a>
-
-                <a href="http://fedoraproject.org/"><img 
-                    src="poweredby.png" 
-                    alt="[ Powered by Fedora ]" 
-                    width="88" height="31" /></a>
+            <p style="font-size: 14px; color: #444;">Try jQuery EasyUI to build your modern, interactive, javascript
+                applications.</p>
+        </div>
+        <div id="menuDialogs">
+            <div id="newProjectDialog">
+                项目名称：<input type="text" name="projectName" class="easyui-textbox"/>
+            </div>
+            <div id="openProjectDialog">
+                <table id="projectDataGrid"></table>
+            </div>
+            <div id="newDesignDialog">
+                <input type="radio" name="designType" value="shulong" checked="checked"/>鼠笼型三相异步电动机
+                <br/>
+                <input type="radio" name="designType" value="raoxian"/>绕线型三相异步电动机
             </div>
         </div>
-    </body>
+    </div>
+    <div data-options="region:'west',split:true,title:'项目管理'" style="width: 20%;" id="projectManagementRegion">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'center'">
+                <div id="projectName"></div>
+                <div id="projectNameContextMenu" class="easyui-menu">
+                    <div>重命名</div>
+                    <div>删除</div>
+                </div>
+                <div id="designRootContextMenu" class="easyui-menu">
+                    <div>重命名</div>
+                    <div>删除</div>
+                </div>
+                <div id="designTemplateContextMenu" class="easyui-menu">
+                    <div>读取成型设计单</div>
+                    <div>读取散嵌设计单</div>
+                </div>
+                <div id="calculateNodeContextMenu" class="easyui-menu">
+                    <div>计算</div>
+                </div>
+            </div>
+            <div data-options="region:'south',split:true,title:'属性'" style="height: 50%">
+                <table class="easyui-datagrid" style="width:100%;display:none" id="property"
+                       data-options="rownumbers:true,singleSelect:true,collapsible:true,showHeader:false">
+                    <!--thead>
+                <tr>
+                    <th data-options="field:'name'" width="35%">名称</th>
+                    <th data-options="field:'value',editor:'numberbox'" width="30%">值</th>
+                    <th data-options="field:'unit',editor:'combobox'" width="30%">单位</th>
+                </tr>
+                </thead-->
+                </table>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center',title:'显示窗口'">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'center'"></div>
+            <div data-options="region:'south',split:true,title:'消息和进度'" style="height: 20%">
+                <div class="easyui-layout" data-options="fit:true">
+                    <div data-options="region:'center'"></div>
+                    <div data-options="region:'west',split:true" style="width: 50%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

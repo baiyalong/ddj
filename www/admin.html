@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>XX在线设计系统</title>
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script type="text/javascript" src="/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/script/admin.js"></script>
+</head>
+<body>
+<div class="easyui-panel">
+    <p style="float:left;font-weight:bold;margin:6px">用户管理</p>
+    <a id="logout" href="#" style="float:right;text-decoration:none;font-weight:bolder;margin:6px" onclick="user.logout()"></a>
+    <a id="changePassword" href="#" style="float:right;text-decoration:none;font-weight:bolder;margin:6px" onclick="user.changePassword()"></a>
+    <div id="userName" style="float:right;font-weight:bold;margin:6px"></div>
+</div>
+<div id="loginDialog">
+    <table>
+        <tr>
+            <td>帐号:</td>
+            <td><input name="name" type="text" value="admin" class="f1 easyui-textbox" readonly="readonly"></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input name="password" type="password" class="f1 easyui-textbox"></td>
+        </tr>
+    </table>
+</div>
+<table id="userDatagrid"></table>
+<div id="userAddDialog">
+    <form>
+        <table>
+            <tr>
+                <td>帐号:</td>
+                <td><input name="name" type="text" class="f1 easyui-textbox"></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input name="password" type="password" class="f1 easyui-textbox"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="userEditDialog">
+    <form>
+        <table>
+            <tr>
+                <td>帐号:</td>
+                <td><input name="name" type="text" class="f1 easyui-textbox" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input name="password" type="password" class="f1 easyui-textbox"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
