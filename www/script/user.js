@@ -6,11 +6,14 @@ var user = {
     login: function (fn) {
         $.ajax({
             type: 'POST',
-            url: '/api/user/login',
-            data: JSON.stringify(this.user),
-            contentType: 'application/json',
+            url: '/api/login',
+            data: {
+                userName: this.user.name,
+                password: this.user.password
+            },
+            //contentType: 'application/json',
             success: function (data) {
-                if (data.length == 24) {
+                if (data.length > 20) {
                     if (user.user.name == 'admin') {
                         window.location.href = '/Home/Admin';
                     }
@@ -53,7 +56,7 @@ var user = {
     logout: function () {
         $.ajax({
             type: 'DELETE',
-            url: '/api/user/logout/' + user.user._id,
+            url: '/api/logout/' + user.user._id,
             contentType: 'application/json',
             success: function () {
                 //$('#loginDialog').dialog('open');
@@ -117,9 +120,6 @@ var user = {
         this.enter();
     }
 }
-
-
-
 
 
 $(function () {

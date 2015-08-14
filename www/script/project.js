@@ -583,7 +583,7 @@ design.contextMenu = function (e, node) {
 design.init = function (id, type) {
     $('#projectName').parent().append('<ul class="design" id="' + id + '"></ul>');
     $('#' + id).tree({
-        url: '/json/tree_data_' + type + '.json',
+        url: '/json/' + type + '.json',
         method: 'get',
         animate: true,
         onClick: function (node) {
