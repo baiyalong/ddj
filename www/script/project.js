@@ -8,6 +8,7 @@ var project = {
 };
 var design = {}
 var property = {}
+var display = {}
 property.enableCellEditing = function (fn) {
     (function ($) {
         function nav(target) {
@@ -53,7 +54,9 @@ property.enableCellEditing = function (fn) {
                 cell.addClass('datagrid-row-selected');
                 return;
             }
-            if (!cell) { return; }
+            if (!cell) {
+                return;
+            }
             var field = cell.attr('field');
             var tr = cell.closest('tr.datagrid-row');
             var index = parseInt(tr.attr('datagrid-row-index'));
@@ -168,60 +171,81 @@ property.enableCellEditing = function (fn) {
         $('#property').datagrid().datagrid('enableCellEditing');
     })
 
-    property.enableCellEditing = function () { };
+    property.enableCellEditing = function () {
+    };
 }
 property.enableCellEditingFilter = function (param) {
     var res = false;
     var node = $('[id^=design]').tree('getSelected');
     switch (node.text) {
-        case '基本参数': {
+        case '基本参数':
+        {
             if (param.index == 1 && param.field == 'value') res = true;
             break;
-        };
-        case '定子铁心': {
+        }
+            ;
+        case '定子铁心':
+        {
             if (param.field == 'value') res = true;
             var a = [3, 4, 5, 6, 13, 15, 16, 17, 18];
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
-        };
-        case '定子绕组': {
+        }
+            ;
+        case '定子绕组':
+        {
             if (param.field == 'value') res = true;
             var a = [0, 1, 2, 3, 4, 5, 6, 13, 15, 16, 17, 18, 19];
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
-        };
-        case '转子铁心': {
+        }
+            ;
+        case '转子铁心':
+        {
             if (param.field == 'value') res = true;
             var a = [3, 4, 5, 6, 15, 17, 19, 20, 21, 22];
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
-        };
-        case '转子鼠笼': {
+        }
+            ;
+        case '转子鼠笼':
+        {
             if (param.field == 'value') res = true;
             var a = [4, 5];
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
-        };
-        case '解析电磁稳态分析': {
+        }
+            ;
+        case '解析电磁稳态分析':
+        {
             if (param.field == 'value') res = true;
             break;
-        };
-        case '解析电磁暂态分析': {
+        }
+            ;
+        case '解析电磁暂态分析':
+        {
             if (param.field == 'value') res = true;
             break;
-        };
-        case '数值电磁分析': {
+        }
+            ;
+        case '数值电磁分析':
+        {
             if (param.field == 'value') res = true;
             break;
-        };
-        case '定子机械分析': {
+        }
+            ;
+        case '定子机械分析':
+        {
             if (param.field == 'value') res = true;
             break;
-        };
-        case '定子端部分析': {
+        }
+            ;
+        case '定子端部分析':
+        {
             if (param.field == 'value') res = true;
             break;
-        };
+        }
+            ;
         default:
 
     }
@@ -235,14 +259,16 @@ property.init = function (node) {
         });
         return;
     }
-    node.attributes.property.forEach(function (e, i, a) { e.sn = i + 1 });
+    node.attributes.property.forEach(function (e, i, a) {
+        e.sn = i + 1
+    });
     var unitOptions = [
-        { value: '毫米', text: '毫米' },
-        { value: '厘米', text: '厘米' },
-        { value: '分米', text: '分米' },
-        { value: '米', text: '米' },
-        { value: '英尺', text: '英尺' },
-        { value: '英寸', text: '英寸' }
+        {value: '毫米', text: '毫米'},
+        {value: '厘米', text: '厘米'},
+        {value: '分米', text: '分米'},
+        {value: '米', text: '米'},
+        {value: '英尺', text: '英尺'},
+        {value: '英寸', text: '英寸'}
     ];
     $('#property').datagrid({
         showHeader: true,
@@ -259,201 +285,225 @@ property.init = function (node) {
                 }
             };
             switch (row.name) {
-                case '铁心牌号': {
+                case '铁心牌号':
+                {
                     editor.options.data = [
-                        { value: '50W470', text: '50W470' },
-                        { value: '50W540', text: '50W540' },
-                        { value: '50D23', text: '50D23' },
+                        {value: '50W470', text: '50W470'},
+                        {value: '50W540', text: '50W540'},
+                        {value: '50D23', text: '50D23'},
                     ];
                     break;
                 }
-                case '定子槽型': {
+                case '定子槽型':
+                {
                     editor.options.data = [
-                        { value: '全开口矩形槽', text: '全开口矩形槽' },
-                        { value: '半开口矩形槽', text: '半开口矩形槽' },
-                        { value: '半开口圆底槽', text: '半开口圆底槽' },
+                        {value: '全开口矩形槽', text: '全开口矩形槽'},
+                        {value: '半开口矩形槽', text: '半开口矩形槽'},
+                        {value: '半开口圆底槽', text: '半开口圆底槽'},
                     ];
                     break;
                 }
                 case '定子绕组层数':
-                case '转子绕组层数': {
+                case '转子绕组层数':
+                {
                     editor.options.data = [
-                        { value: '单层', text: '单层' },
-                        { value: '双层', text: '双层' },
+                        {value: '单层', text: '单层'},
+                        {value: '双层', text: '双层'},
                     ];
                     break;
                 }
                 case '定子绕组接法':
-                case '转子绕组接法': {
+                case '转子绕组接法':
+                {
                     editor.options.data = [
-                        { value: '星型', text: '星型' },
-                        { value: '角型', text: '角型' },
+                        {value: '星型', text: '星型'},
+                        {value: '角型', text: '角型'},
                     ];
                     break;
                 }
-                case '导线类型': {
+                case '导线类型':
+                {
                     editor.options.data = [
-                        { value: '扁线', text: '扁线' },
-                        { value: '圆线', text: '圆线' },
+                        {value: '扁线', text: '扁线'},
+                        {value: '圆线', text: '圆线'},
                     ];
                     break;
                 }
                 case '定子绕组连接类型':
-                case '转子绕组连接类型': {
+                case '转子绕组连接类型':
+                {
                     editor.options.data = [
-                        { value: '显极', text: '显极' },
-                        { value: '庶极', text: '庶极' },
+                        {value: '显极', text: '显极'},
+                        {value: '庶极', text: '庶极'},
                     ];
                     break;
                 }
-                case '转子绕组相序': {
+                case '转子绕组相序':
+                {
                     editor.options.data = [
-                        { value: '同侧', text: '同侧' },
-                        { value: '异侧', text: '异侧' },
+                        {value: '同侧', text: '同侧'},
+                        {value: '异侧', text: '异侧'},
                     ];
                     break;
                 }
                 case '定子绕组相序':
                 case '定子槽号排序':
-                case '转子槽号排序': {
+                case '转子槽号排序':
+                {
                     editor.options.data = [
-                        { value: '顺时针', text: '顺时针' },
-                        { value: '逆时针', text: '逆时针' },
+                        {value: '顺时针', text: '顺时针'},
+                        {value: '逆时针', text: '逆时针'},
                     ];
                     break;
                 }
-                case '定子线圈形状': {
+                case '定子线圈形状':
+                {
                     editor.options.data = [
-                        { value: '入槽在左边', text: '入槽在左边' },
-                        { value: '入槽在右边', text: '入槽在右边' },
+                        {value: '入槽在左边', text: '入槽在左边'},
+                        {value: '入槽在右边', text: '入槽在右边'},
                     ];
                     break;
                 }
-                case '转子槽类型': {
+                case '转子槽类型':
+                {
                     editor.options.data = [
-                        { value: 'A形槽', text: 'A形槽' },
-                        { value: 'B形槽', text: 'B形槽' },
-                        { value: 'C形槽', text: 'C形槽' },
-                        { value: 'D形槽', text: 'D形槽' },
-                        { value: 'E形槽', text: 'E形槽' },
-                        { value: 'F形槽', text: 'F形槽' },
-                        { value: 'G形槽', text: 'G形槽' },
-                        { value: 'H形槽', text: 'H形槽' },
+                        {value: 'A形槽', text: 'A形槽'},
+                        {value: 'B形槽', text: 'B形槽'},
+                        {value: 'C形槽', text: 'C形槽'},
+                        {value: 'D形槽', text: 'D形槽'},
+                        {value: 'E形槽', text: 'E形槽'},
+                        {value: 'F形槽', text: 'F形槽'},
+                        {value: 'G形槽', text: 'G形槽'},
+                        {value: 'H形槽', text: 'H形槽'},
                     ];
                     break;
                 }
-                case '乙类波绕组': {
+                case '乙类波绕组':
+                {
                     editor.options.data = [
-                        { value: '是', text: '是' },
-                        { value: '否', text: '否' },
+                        {value: '是', text: '是'},
+                        {value: '否', text: '否'},
                     ];
                     break;
                 }
-                case '求解方法': {
+                case '求解方法':
+                {
                     editor.options.data = [
-                        { value: '解法1', text: '解法1' },
-                        { value: '解法2', text: '解法2' },
+                        {value: '解法1', text: '解法1'},
+                        {value: '解法2', text: '解法2'},
                     ];
                     break;
                 }
-                case '定子机端电压类型': {
+                case '定子机端电压类型':
+                {
                     editor.options.data = [
-                        { value: '正弦类型', text: '正弦类型' },
-                        { value: '表格输入', text: '表格输入' },
+                        {value: '正弦类型', text: '正弦类型'},
+                        {value: '表格输入', text: '表格输入'},
                     ];
                     break;
                 }
-                case '转子旋转类型': {
+                case '转子旋转类型':
+                {
                     editor.options.data = [
-                        { value: '转速恒定', text: '转速恒定' },
-                        { value: '转速可变', text: '转速可变' },
+                        {value: '转速恒定', text: '转速恒定'},
+                        {value: '转速可变', text: '转速可变'},
                     ];
                     break;
                 }
-                case '转子负载类型': {
+                case '转子负载类型':
+                {
                     editor.options.data = [
-                        { value: '输出转矩', text: '输出转矩' },
-                        { value: '输出功率', text: '输出功率' },
+                        {value: '输出转矩', text: '输出转矩'},
+                        {value: '输出功率', text: '输出功率'},
                     ];
                     break;
                 }
-                case '转子负载变量': {
+                case '转子负载变量':
+                {
                     editor.options.data = [
-                        { value: '时间', text: '时间' },
-                        { value: '转速', text: '转速' },
+                        {value: '时间', text: '时间'},
+                        {value: '转速', text: '转速'},
                     ];
                     break;
                 }
-                case '解方程龙格库塔法': {
+                case '解方程龙格库塔法':
+                {
                     editor.options.data = [
-                        { value: '显式四阶', text: '显式四阶' },
-                        { value: '半隐式', text: '半隐式' },
+                        {value: '显式四阶', text: '显式四阶'},
+                        {value: '半隐式', text: '半隐式'},
                     ];
                     break;
                 }
-                case '谐波分析方法': {
+                case '谐波分析方法':
+                {
                     editor.options.data = [
-                        { value: '方法一', text: '方法一' },
-                        { value: '方法二', text: '方法二' },
+                        {value: '方法一', text: '方法一'},
+                        {value: '方法二', text: '方法二'},
                     ];
                     break;
                 }
-                case '分析结构类型': {
+                case '分析结构类型':
+                {
                     editor.options.data = [
-                        { value: '定子铁心', text: '定子铁心' },
-                        { value: '定子绕组', text: '定子绕组' },
-                        { value: '定子基座', text: '定子基座' },
-                        { value: '定子铁心绕组', text: '定子铁心绕组' },
-                        { value: '定子整机', text: '定子整机' },
+                        {value: '定子铁心', text: '定子铁心'},
+                        {value: '定子绕组', text: '定子绕组'},
+                        {value: '定子基座', text: '定子基座'},
+                        {value: '定子铁心绕组', text: '定子铁心绕组'},
+                        {value: '定子整机', text: '定子整机'},
                     ];
                     break;
                 }
-                case '分析计算类型': {
+                case '分析计算类型':
+                {
                     editor.options.data = [
-                        { value: '机械力学参数', text: '机械力学参数' },
-                        { value: '机械模态特征', text: '机械模态特征' },
-                        { value: '谐波响应振动', text: '谐波响应振动' },
-                        { value: '瞬态响应振动', text: '瞬态响应振动' },
-                        { value: '谐波电噪指数', text: '谐波电噪指数' },
-                        { value: '瞬态电噪指数', text: '瞬态电噪指数' },
-                        { value: '谐波电磁噪声', text: '谐波电磁噪声' },
-                        { value: '瞬态电磁噪声', text: '瞬态电磁噪声' },
+                        {value: '机械力学参数', text: '机械力学参数'},
+                        {value: '机械模态特征', text: '机械模态特征'},
+                        {value: '谐波响应振动', text: '谐波响应振动'},
+                        {value: '瞬态响应振动', text: '瞬态响应振动'},
+                        {value: '谐波电噪指数', text: '谐波电噪指数'},
+                        {value: '瞬态电噪指数', text: '瞬态电噪指数'},
+                        {value: '谐波电磁噪声', text: '谐波电磁噪声'},
+                        {value: '瞬态电磁噪声', text: '瞬态电磁噪声'},
                     ];
                     break;
                 }
-                case '定子裸扁导线排列方式': {
+                case '定子裸扁导线排列方式':
+                {
                     editor.options.data = [
-                        { value: '单根单排', text: '单根单排' },
-                        { value: '单根双排', text: '单根双排' },
-                        { value: '双根单排', text: '双根单排' },
-                        { value: '双根双排', text: '双根双排' },
-                        { value: '三根三排', text: '三根三排' },
-                        { value: '四根双排', text: '四根双排' },
-                        { value: '九根三排', text: '九根三排' },
-                        { value: '其他排列', text: '其他排列' },
+                        {value: '单根单排', text: '单根单排'},
+                        {value: '单根双排', text: '单根双排'},
+                        {value: '双根单排', text: '双根单排'},
+                        {value: '双根双排', text: '双根双排'},
+                        {value: '三根三排', text: '三根三排'},
+                        {value: '四根双排', text: '四根双排'},
+                        {value: '九根三排', text: '九根三排'},
+                        {value: '其他排列', text: '其他排列'},
                     ];
                     break;
                 }
-                case '基座材料选择': {
+                case '基座材料选择':
+                {
                     editor.options.data = [
-                        { value: '钢材', text: '钢材' },
-                        { value: '铸铁', text: '铸铁' },
-                        { value: '铝合金', text: '铝合金' },
-                        { value: '其他材料', text: '其他材料' },
+                        {value: '钢材', text: '钢材'},
+                        {value: '铸铁', text: '铸铁'},
+                        {value: '铝合金', text: '铝合金'},
+                        {value: '其他材料', text: '其他材料'},
                     ];
                     break;
                 }
-                case '定子铁心与基座连接方式': {
+                case '定子铁心与基座连接方式':
+                {
                     editor.options.data = [
-                        { value: '过盈装配', text: '过盈装配' },
-                        { value: '骨架链接', text: '骨架链接' },
+                        {value: '过盈装配', text: '过盈装配'},
+                        {value: '骨架链接', text: '骨架链接'},
                     ];
                     break;
                 }
-                case '基座剖分类型': {
+                case '基座剖分类型':
+                {
                     editor.options.data = [
-                        { value: '智能网格剖分', text: '智能网格剖分' },
-                        { value: '单元边长固定', text: '单元边长固定' },
+                        {value: '智能网格剖分', text: '智能网格剖分'},
+                        {value: '单元边长固定', text: '单元边长固定'},
                     ];
                     break;
                 }
@@ -465,7 +515,8 @@ property.init = function (node) {
                 case '自动稳态判断':
                 case '转子静态偏心':
                 case '转子动态偏心':
-                case '定子内圆为椭圆': {
+                case '定子内圆为椭圆':
+                {
                     editor = {
                         type: 'checkbox',
                         options: {
@@ -521,40 +572,50 @@ property.init = function (node) {
 design.contextMenu = function (e, node) {
     switch (node.text) {
         case '鼠笼型三相异步电动机':
-        case '绕线型三相异步电动机': {
+        case '绕线型三相异步电动机':
+        {
             $('#designRootContextMenu').menu('show', {
                 left: e.pageX,
                 top: e.pageY,
                 onClick: function (item) {
                     switch (item.text) {
-                        case '重命名': {
+                        case '重命名':
+                        {
 
                             break;
-                        };
-                        case '删除': {
+                        }
+                            ;
+                        case '删除':
+                        {
 
                             break;
-                        };
+                        }
+                            ;
                         default:
                     }
                 }
             });
             break;
         }
-        case '本体结构参数': {
+        case '本体结构参数':
+        {
             $('#designTemplateContextMenu').menu('show', {
                 left: e.pageX,
                 top: e.pageY,
                 onClick: function (item) {
                     switch (item.text) {
-                        case '读取成型设计单': {
+                        case '读取成型设计单':
+                        {
 
                             break;
-                        };
-                        case '读取散嵌设计单': {
+                        }
+                            ;
+                        case '读取散嵌设计单':
+                        {
 
                             break;
-                        };
+                        }
+                            ;
                         default:
                     }
                 }
@@ -565,7 +626,8 @@ design.contextMenu = function (e, node) {
         case '解析电磁暂态分析':
         case '数值电磁分析':
         case '定子机械分析':
-        case '定子端部分析': {
+        case '定子端部分析':
+        {
             $('#calculateNodeContextMenu').menu('show', {
                 left: e.pageX,
                 top: e.pageY,
@@ -598,7 +660,36 @@ design.init = function (id, type) {
         }
     });
 }
-
+display.init = function (id, type) {
+    $('#display').tabs('add', {
+        id: id += '_display',
+        title: (function (type) {
+            if (type == 'shulong')return '鼠笼型三相异步电动机';
+            else if (type == 'raoxian')return '绕线型三相异步电动机';
+            else return '';
+        })(type),
+        content: null,
+        closable: false,
+    });
+    $('#' + id).tabs({
+        tabPosition: 'bottom',
+        border: false
+    }).tabs('add', {
+        title: '图形窗口'
+    }).tabs('add', {
+        title: '定子绕组编辑器'
+    }).tabs('add', {
+        title: '文本窗口'
+    }).tabs('add', {
+        title: '曲线窗口'
+    });
+    if (type == 'raoxian')
+        $('#' + id).tabs('add', {
+            title: '转子绕组编辑器',
+            index: 2
+        });
+    $('#' + id).tabs('select', 0);
+}
 menu.project = function () {
     $('#newProject').on('click', function () {
         $('#newProjectDialog').dialog('open');
@@ -633,25 +724,30 @@ menu.project = function () {
                 top: e.pageY,
                 onClick: function (item) {
                     switch (item.text) {
-                        case '重命名': {
+                        case '重命名':
+                        {
                             $('#newProjectDialog').dialog({
                                 title: '重命名项目'
                             }).dialog('open');
                             break;
-                        };
-                        case '删除': {
+                        }
+                            ;
+                        case '删除':
+                        {
                             if (confirm('确认删除项目 ' + $('#projectName').text() + ' 吗？')) {
                                 $('#projectName').text('');
                                 //delete project and the designs
                             }
                             break;
-                        };
+                        }
+                            ;
                         default:
                     }
                 }
             });
         });
-        projectNameContextMenu = function () { }
+        projectNameContextMenu = function () {
+        }
     }
     $('#newProjectDialog').dialog({
         title: '新建项目',
@@ -746,6 +842,7 @@ menu.design = function () {
                     id: id, type: designType
                 });
                 design.init(id, designType);
+                display.init(id, designType);
                 $('#newDesignDialog').dialog('close');
             }
         }, {
@@ -761,7 +858,6 @@ menu.init = function () {
     menu.project();
     menu.design();
 }
-
 
 
 $(function () {
