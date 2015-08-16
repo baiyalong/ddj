@@ -771,6 +771,10 @@ menu.project = function () {
         $('#openProjectDialog').dialog('open');
     });
     $('#saveProject').on('click', function () {
+        if (project.userName != $("#userName").text()) {
+            $.messager.alert('', "不能修改其他人的项目！", 'error');
+            return;
+        }
         project.userName = $("#userName").text();
         project.designs.forEach(function (e) {
             var root = $('#' + e.id).tree('getRoot');
@@ -899,7 +903,11 @@ menu.project = function () {
                         if (data) {
                             project = data;
                             project.designs.forEach(function (e, i, a) {
-                                design.init('design' + i, e.type, JSON.parse(e.data));
+                                var id = 'design' + i;
+                                if (project.userName != $("#userName").text()) {
+                                    id += '_cannotedit'
+                                }
+                                design.init(id, e.type, JSON.parse(e.data));
                             })
                             $('#openProjectDialog').dialog('close');
                         }
