@@ -26,7 +26,7 @@
         </tr>
     </table>
 </div>
-<div class="easyui-layout">
+<div class="easyui-layout" data-options="fit:true">
     <div data-options="region:'north'" style="height: 30px">
         <div class="easyui-panel">
             <a href="#" class="easyui-menubutton" data-options="menu:'#mm0'">文件</a>
@@ -92,7 +92,7 @@
                 项目名称：<input type="text" name="projectName" class="easyui-textbox"/>
             </div>
             <div id="openProjectDialog">
-                <table id="projectDataGrid"></table>
+                <table id="projectListDataGrid"></table>
             </div>
             <div id="newDesignDialog">
                 <input type="radio" name="designType" value="shulong" checked="checked"/>鼠笼型三相异步电动机
@@ -132,12 +132,15 @@
                 </tr>
                 </thead-->
                 </table>
+                <div id="定子线电压采样表格">
+                    <table></table>
+                </div>
             </div>
         </div>
     </div>
     <div data-options="region:'center',title:'显示窗口'">
         <div class="easyui-layout" data-options="fit:true">
-            <div data-options="region:'center'"  id="display" class="easyui-tabs"></div>
+            <div data-options="region:'center'" id="display" class="easyui-tabs"></div>
             <div data-options="region:'south',split:true,title:'消息和进度'" style="height: 20%">
                 <div class="easyui-layout" data-options="fit:true">
                     <div data-options="region:'center'"></div>

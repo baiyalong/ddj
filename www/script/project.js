@@ -4,7 +4,7 @@
 var menu = {};
 var project = {
     name: '',
-    design: []
+    designs: []
 };
 var design = {}
 var property = {}
@@ -285,6 +285,17 @@ property.init = function (node) {
                 }
             };
             switch (row.name) {
+                case '极数':
+                {
+                    editor = {
+                        type: 'numberbox',
+                        options: {
+                            precision: 0,
+                            min: 0
+                        }
+                    }
+                    break;
+                }
                 case '铁心牌号':
                 {
                     editor.options.data = [
@@ -526,8 +537,27 @@ property.init = function (node) {
                     };
                     break;
                 }
+                case '定子线电压采样表格':
+                {
+                    $('#定子线电压采样表格').dialog('open');
+                    return;
+                }
                 default:
-                    editor = 'numberbox'
+                    editor = {
+                        type: 'numberbox',
+                        options: {
+                            precision: 4,
+                            min: 0
+                        }
+                    }
+                    col.formatter = function (value, row, index) {
+                        var number = Number(value);
+                        if (isNaN(number)) {
+                            return 0;
+                        } else {
+                            return number.toFixed(editor.options.precision) * 10000 / 10000;
+                        }
+                    }
             }
             col.editor = editor;
         },
@@ -568,6 +598,38 @@ property.init = function (node) {
 
     property.enableCellEditing(property.enableCellEditingFilter);
 }
+
+property.dialogs = {
+    init: function () {
+        $('#定子线电压采样表格').dialog({
+            title: '定子机端线电压输入表格',
+            width: 500,
+            height: 500,
+            closed: true,
+            cache: true,
+            modal: true,
+            buttons: [{
+                text: '读取文件',
+                handler: function () {
+
+                }
+            }, {
+                text: '确定',
+                handler: function () {
+                    $('#定子线电压采样表格').dialog('close')
+                }
+            }]
+        });
+        $('#定子线电压采样表格 table').datagrid({
+            columns: [[
+                {field: 'sn', title: '序号', width: 100},
+                {field: 'time', title: '时间(s)', width: 100},
+                {field: 'uab', title: 'Uab(V)', width: 100},
+                {field: 'ubc', title: 'Ubc(V)', width: 100}
+            ]]
+        });
+    }
+};
 
 design.contextMenu = function (e, node) {
     switch (node.text) {
@@ -642,24 +704,7 @@ design.contextMenu = function (e, node) {
     }
 
 }
-design.init = function (id, type) {
-    $('#projectName').parent().append('<ul class="design" id="' + id + '"></ul>');
-    $('#' + id).tree({
-        url: '/json/' + type + '.json',
-        method: 'get',
-        animate: true,
-        onClick: function (node) {
-            property.init(node);
-        },
-        onContextMenu: function (e, node) {
-            e.preventDefault();
-            // select the node
-            $('#' + id).tree('select', node.target);
-            // display context menu
-            design.contextMenu(e, node);
-        }
-    });
-}
+
 display.init = function (id, type) {
     $('#display').tabs('add', {
         id: id += '_display',
@@ -690,23 +735,60 @@ display.init = function (id, type) {
         });
     $('#' + id).tabs('select', 0);
 }
+
+design.init = function (id, type, data) {
+    $('#projectName').parent().append('<ul class="design" id="' + id + '"></ul>');
+    $('#' + id).tree({
+        animate: true,
+        onClick: function (node) {
+            property.init(node);
+        },
+        onContextMenu: function (e, node) {
+            e.preventDefault();
+            // select the node
+            $('#' + id).tree('select', node.target);
+            // display context menu
+            design.contextMenu(e, node);
+        }
+    });
+    if (data != undefined) {
+        $('#' + id).tree('loadData', [data]);
+    } else {
+        $('#' + id).tree({
+            url: '/json/' + type + '.json',
+            method: 'get',
+        });
+    }
+    display.init(id, type);
+}
+
 menu.project = function () {
     $('#newProject').on('click', function () {
         $('#newProjectDialog').dialog('open');
     });
     $('#openProject').on('click', function () {
-        // $('#openProjectDialog table').datagrid('reload');
+        $('#projectListDataGrid').datagrid('reload', {});
         $('#openProjectDialog').dialog('open');
     });
     $('#saveProject').on('click', function () {
         project.userName = $("#userName").text();
+        project.designs.forEach(function (e) {
+            var root = $('#' + e.id).tree('getRoot');
+            var data = $('#' + e.id).tree('getData', root.target);
+            e.data = JSON.stringify(data);
+        })
+        var type = 'POST', url = '/api/project';
+        if (project._id != undefined) {
+            type = 'PUT';
+            url += '/' + project._id;
+        }
         $.ajax({
-            type: 'POST',
-            url: '/api/project',
+            type: type,
+            url: url,
             data: JSON.stringify(project),
             contentType: 'application/json',
             success: function (data) {
-                if (data.length == 24) {
+                if (data) {
                     project._id = data;
                     $.messager.alert('保存项目', '保存项目成功!', 'info');
                 }
@@ -759,11 +841,13 @@ menu.project = function () {
         buttons: [{
             text: '保存',
             handler: function () {
+                project._id = undefined;
                 var projectName = $('input[name="projectName"]').val();
                 project.name = projectName;
                 $('#projectName').text(projectName);
                 $('#newProjectDialog').dialog('close');
                 projectNameContextMenu();
+                property.dialogs.init();
             }
         }, {
             text: '取消',
@@ -772,7 +856,7 @@ menu.project = function () {
             }
         }]
     });
-    $('#openProjectDialog table').datagrid({
+    $('#projectListDataGrid').datagrid({
         url: '/api/project',
         method: 'get',
         columns: [[
@@ -802,11 +886,28 @@ menu.project = function () {
         buttons: [{
             text: '确定',
             handler: function () {
-                //var projectName = $('input[name="projectName"]').val();
-                //project.name = projectName;
-                //$('#projectName').text(projectName);
-                //$('#newProjectDialog').dialog('close');
-                //projectNameContextMenu();
+                var row = $('#projectListDataGrid').datagrid('getSelected');
+                if (row == null) {
+                    $.messager.alert('', "请选择要打开的项目！", 'error');
+                    return;
+                }
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/project/' + row._id,
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data) {
+                            project = data;
+                            project.designs.forEach(function (e, i, a) {
+                                design.init('design' + i, e.type, JSON.parse(e.data));
+                            })
+                            $('#openProjectDialog').dialog('close');
+                        }
+                        else {
+                            $.messager.alert('打开项目', '打开项目失败!', 'error');
+                        }
+                    }
+                });
             }
         }, {
             text: '取消',
@@ -838,11 +939,10 @@ menu.design = function () {
             handler: function () {
                 var designType = $("input[name='designType']:checked").val();
                 var id = 'design' + $('#projectName').nextAll('.design').length;
-                project.design.push({
+                project.designs.push({
                     id: id, type: designType
                 });
                 design.init(id, designType);
-                display.init(id, designType);
                 $('#newDesignDialog').dialog('close');
             }
         }, {
