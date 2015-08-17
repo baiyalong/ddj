@@ -888,12 +888,15 @@ menu.project = function () {
         cache: false,
         modal: true,
         buttons: [{
-            text: '确定',
+            text: '打开',
             handler: function () {
                 var row = $('#projectListDataGrid').datagrid('getSelected');
                 if (row == null) {
                     $.messager.alert('', "请选择要打开的项目！", 'error');
                     return;
+                }
+                if (row.userName != $("#userName").text()) {
+                    $.messager.alert('打开项目', '不能编辑其他人的项目!', 'info');
                 }
                 $.ajax({
                     type: 'GET',
@@ -901,6 +904,7 @@ menu.project = function () {
                     contentType: 'application/json',
                     success: function (data) {
                         if (data) {
+                            $('#openProjectDialog').dialog('close');
                             project = data;
                             project.designs.forEach(function (e, i, a) {
                                 var id = 'design' + i;
@@ -909,10 +913,36 @@ menu.project = function () {
                                 }
                                 design.init(id, e.type, JSON.parse(e.data));
                             })
-                            $('#openProjectDialog').dialog('close');
                         }
                         else {
                             $.messager.alert('打开项目', '打开项目失败!', 'error');
+                        }
+                    }
+                });
+            }
+        }, {
+            text: '删除',
+            handler: function () {
+                var row = $('#projectListDataGrid').datagrid('getSelected');
+                if (row == null) {
+                    $.messager.alert('', "请选择要删除的项目！", 'error');
+                    return;
+                }
+                if (row.userName != $("#userName").text()) {
+                    $.messager.alert('打开项目', '不能删除其他人的项目!', 'error');
+                    return;
+                }
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/api/project/' + row._id,
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data) {
+                            $.messager.alert('打开项目', '删除成功!', 'info');
+                            $('#projectListDataGrid').datagrid('reload', {});
+                        }
+                        else {
+                            $.messager.alert('打开项目', '删除失败!', 'error');
                         }
                     }
                 });
