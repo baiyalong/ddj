@@ -906,6 +906,8 @@ menu.project = function () {
                         if (data) {
                             $('#openProjectDialog').dialog('close');
                             project = data;
+                            $('#projectName').text(project.name);
+                            if (project.designs == null)project.designs = [];
                             project.designs.forEach(function (e, i, a) {
                                 var id = 'design' + i;
                                 if (project.userName != $("#userName").text()) {
