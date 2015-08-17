@@ -286,6 +286,13 @@ property.init = function (node) {
             };
             switch (row.name) {
                 case '极数':
+                case '定子槽数':
+                case '径向通风道数':
+                case '并联支路数':
+                case '每槽导体数':
+                case '线圈截距':
+                case '线规并绕根数':
+                case '转子槽数':
                 {
                     editor = {
                         type: 'numberbox',
@@ -302,15 +309,6 @@ property.init = function (node) {
                         {value: '50W470', text: '50W470'},
                         {value: '50W540', text: '50W540'},
                         {value: '50D23', text: '50D23'},
-                    ];
-                    break;
-                }
-                case '定子槽型':
-                {
-                    editor.options.data = [
-                        {value: '全开口矩形槽', text: '全开口矩形槽'},
-                        {value: '半开口矩形槽', text: '半开口矩形槽'},
-                        {value: '半开口圆底槽', text: '半开口圆底槽'},
                     ];
                     break;
                 }
@@ -372,20 +370,6 @@ property.init = function (node) {
                     editor.options.data = [
                         {value: '入槽在左边', text: '入槽在左边'},
                         {value: '入槽在右边', text: '入槽在右边'},
-                    ];
-                    break;
-                }
-                case '转子槽类型':
-                {
-                    editor.options.data = [
-                        {value: 'A形槽', text: 'A形槽'},
-                        {value: 'B形槽', text: 'B形槽'},
-                        {value: 'C形槽', text: 'C形槽'},
-                        {value: 'D形槽', text: 'D形槽'},
-                        {value: 'E形槽', text: 'E形槽'},
-                        {value: 'F形槽', text: 'F形槽'},
-                        {value: 'G形槽', text: 'G形槽'},
-                        {value: 'H形槽', text: 'H形槽'},
                     ];
                     break;
                 }
@@ -542,6 +526,16 @@ property.init = function (node) {
                     $('#定子线电压采样表格').dialog('open');
                     return;
                 }
+                case '定子槽型':
+                {
+                    $('#定子槽型').dialog('open');
+                    return;
+                }
+                case '转子槽类型':
+                {
+                    $('#转子槽类型').dialog('open');
+                    return;
+                }
                 default:
                     editor = {
                         type: 'numberbox',
@@ -601,6 +595,72 @@ property.init = function (node) {
 
 property.dialogs = {
     init: function () {
+        $('#定子槽型').dialog({
+            title: '定子槽型',
+            width: 500,
+            height: 600,
+            closed: true,
+            cache: true,
+            modal: true,
+            resizable: true,
+            onOpen: function () {
+                var value = $('#property').datagrid('getRows')[6].value;
+                $('#定子槽型 form input:radio[name="type"][value="' + value + '"]').attr('checked', true);
+                $('#定子槽型 form').show()
+            },
+            buttons: [{
+                text: '确定',
+                handler: function () {
+                    $('#定子槽型').dialog('close')
+                    var value = $('#定子槽型 form input:radio:checked').val();
+                    $('#property').datagrid('updateRow', {
+                        index: 6,
+                        row: {
+                            name: '定子槽型',
+                            value: value
+                        }
+                    });
+                }
+            }, {
+                text: '取消',
+                handler: function () {
+                    $('#定子槽型').dialog('close')
+                }
+            }]
+        });
+        $('#转子槽类型').dialog({
+            title: '转子槽类型',
+            width: 500,
+            height: 600,
+            closed: true,
+            cache: true,
+            modal: true,
+            resizable: true,
+            onOpen: function () {
+                var value = $('#property').datagrid('getRows')[6].value;
+                $('#转子槽类型 form input:radio[name="type"][value="' + value + '"]').attr('checked', true);
+                $('#转子槽类型 form').show()
+            },
+            buttons: [{
+                text: '确定',
+                handler: function () {
+                    $('#转子槽类型').dialog('close')
+                    var value = $('#转子槽类型 form input:radio:checked').val();
+                    $('#property').datagrid('updateRow', {
+                        index: 6,
+                        row: {
+                            name: '转子槽类型',
+                            value: value
+                        }
+                    });
+                }
+            }, {
+                text: '取消',
+                handler: function () {
+                    $('#转子槽类型').dialog('close')
+                }
+            }]
+        });
         $('#定子线电压采样表格').dialog({
             title: '定子机端线电压输入表格',
             width: 500,
@@ -771,7 +831,7 @@ menu.project = function () {
         $('#openProjectDialog').dialog('open');
     });
     $('#saveProject').on('click', function () {
-        if (project.userName != $("#userName").text()) {
+        if (project.userName != undefined && project.userName != $("#userName").text()) {
             $.messager.alert('', "不能修改其他人的项目！", 'error');
             return;
         }
@@ -915,6 +975,8 @@ menu.project = function () {
                                 }
                                 design.init(id, e.type, JSON.parse(e.data));
                             })
+                            projectNameContextMenu();
+                            property.dialogs.init();
                         }
                         else {
                             $.messager.alert('打开项目', '打开项目失败!', 'error');
