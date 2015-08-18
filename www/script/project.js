@@ -273,7 +273,35 @@ property.init = function (node) {
     $('#property').datagrid({
         showHeader: true,
         data: node.attributes.property,
+        rowStyler: function (index, row) {
+            if (row.name == '长轴相对量' || row.name == '短轴相对量') {
+                if ($('#property').datagrid('getRows')[16].value == '否')
+                    return 'background-color:#C0C0C0';
+            }
+        },
         onBeforeEdit: function (index, row) {
+            //cancel edit
+            if (row.name == '长轴相对量' || row.name == '短轴相对量') {
+                if ($('#property').datagrid('getRows')[16].value == '否') {
+                    return false;
+                }
+            }
+            if (row.name == '转子槽尺寸Hr2' || row.name == '转子槽尺寸Br3' || row.name == '转子槽尺寸Br4') {
+                switch ($('#property').datagrid('getRows')[6].value) {
+                    case 'A型槽':
+                        return false;
+                    case 'B型槽':
+                    case 'E型槽':
+                    case 'F型槽':
+                    case 'G型槽':
+                        if (row.name == '转子槽尺寸Br3' || row.name == '转子槽尺寸Br4')
+                            return false;
+                    default :
+                }
+            }
+
+
+            //editor
             var col = $(this).datagrid('getColumnOption', 'value');
             var editor = {
                 type: 'combobox', options: {
@@ -523,17 +551,17 @@ property.init = function (node) {
                 }
                 case '定子线电压采样表格':
                 {
-                    $('#定子线电压采样表格').dialog('open');
+                    $('#dingzixiandianyacaiyang').dialog('open');
                     return;
                 }
                 case '定子槽型':
                 {
-                    $('#定子槽型').dialog('open');
+                    $('#dingzicaoxing').dialog('open');
                     return;
                 }
                 case '转子槽类型':
                 {
-                    $('#转子槽类型').dialog('open');
+                    $('#zhuanzicaoxing').dialog('open');
                     return;
                 }
                 default:
@@ -595,7 +623,7 @@ property.init = function (node) {
 
 property.dialogs = {
     init: function () {
-        $('#定子槽型').dialog({
+        $('#dingzicaoxing').dialog({
             title: '定子槽型',
             width: 500,
             height: 600,
@@ -605,14 +633,14 @@ property.dialogs = {
             resizable: true,
             onOpen: function () {
                 var value = $('#property').datagrid('getRows')[6].value;
-                $('#定子槽型 form input:radio[name="type"][value="' + value + '"]').attr('checked', true);
-                $('#定子槽型 form').show()
+                $('#dingzicaoxing form input:radio[name="type"][value="' + value + '"]').attr('checked', true);
+                $('#dingzicaoxing form').show()
             },
             buttons: [{
                 text: '确定',
                 handler: function () {
-                    $('#定子槽型').dialog('close')
-                    var value = $('#定子槽型 form input:radio:checked').val();
+                    $('#dingzicaoxing').dialog('close')
+                    var value = $('#dingzicaoxing form input:radio:checked').val();
                     $('#property').datagrid('updateRow', {
                         index: 6,
                         row: {
@@ -624,11 +652,11 @@ property.dialogs = {
             }, {
                 text: '取消',
                 handler: function () {
-                    $('#定子槽型').dialog('close')
+                    $('#dingzicaoxing').dialog('close')
                 }
             }]
         });
-        $('#转子槽类型').dialog({
+        $('#zhuanzicaoxing').dialog({
             title: '转子槽类型',
             width: 500,
             height: 600,
@@ -638,14 +666,14 @@ property.dialogs = {
             resizable: true,
             onOpen: function () {
                 var value = $('#property').datagrid('getRows')[6].value;
-                $('#转子槽类型 form input:radio[name="type"][value="' + value + '"]').attr('checked', true);
-                $('#转子槽类型 form').show()
+                $('#zhuanzicaoxing form input:radio[name="type"][value="' + value + '"]').attr('checked', true);
+                $('#zhuanzicaoxing form').show()
             },
             buttons: [{
                 text: '确定',
                 handler: function () {
-                    $('#转子槽类型').dialog('close')
-                    var value = $('#转子槽类型 form input:radio:checked').val();
+                    $('#zhuanzicaoxing').dialog('close')
+                    var value = $('#zhuanzicaoxing form input:radio:checked').val();
                     $('#property').datagrid('updateRow', {
                         index: 6,
                         row: {
@@ -657,11 +685,11 @@ property.dialogs = {
             }, {
                 text: '取消',
                 handler: function () {
-                    $('#转子槽类型').dialog('close')
+                    $('#zhuanzicaoxing').dialog('close')
                 }
             }]
         });
-        $('#定子线电压采样表格').dialog({
+        $('#dingzixiandianyacaiyang').dialog({
             title: '定子机端线电压输入表格',
             width: 500,
             height: 500,
@@ -676,11 +704,11 @@ property.dialogs = {
             }, {
                 text: '确定',
                 handler: function () {
-                    $('#定子线电压采样表格').dialog('close')
+                    $('#dingzixiandianyacaiyang').dialog('close')
                 }
             }]
         });
-        $('#定子线电压采样表格 table').datagrid({
+        $('#dingzixiandianyacaiyang table').datagrid({
             columns: [[
                 {field: 'sn', title: '序号', width: 100},
                 {field: 'time', title: '时间(s)', width: 100},
