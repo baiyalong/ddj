@@ -176,7 +176,15 @@ property.enableCellEditing = function (fn) {
 }
 property.enableCellEditingFilter = function (param) {
     var res = false;
-    var node = $('[id^=design]').tree('getSelected');
+    var node = null;
+    $('ul[id^=design]').each(function () {
+        var eid = $(this).attr('id');
+        var selectedNode = $('#' + eid).tree('getSelected');
+        if (selectedNode != null) {
+            node = selectedNode;
+        }
+    })
+
     switch (node.text) {
         case '基本参数':
         {
@@ -279,10 +287,59 @@ property.init = function (node) {
                     return 'background-color:#C0C0C0';
             }
         },
+        onEndEdit: function (index, row, changes) {
+            if (row.name == '定子内圆为椭圆') {
+                if (changes.value != undefined)
+                    row.value = changes.value;
+                $('#property').datagrid('updateRow', {
+                    index: 16,
+                    row: {
+                        name: row.name,
+                        value: row.value
+                    }
+                });
+
+            }
+
+            if (row.name == '定子内圆为椭圆' || row.name == '转子静态偏心' || row.name == '转子动态偏心') {
+                var id = null, node = null;
+                $('ul[id^=design]').each(function () {
+                    var eid = $(this).attr('id');
+                    var selectedNode = $('#' + eid).tree('getSelected');
+                    if (selectedNode != null) {
+                        id = eid;
+                        node = selectedNode;
+                    }
+                })
+                display.loadImages(node, id)
+            }
+
+
+        },
         onBeforeEdit: function (index, row) {
             //cancel edit
             if (row.name == '长轴相对量' || row.name == '短轴相对量') {
                 if ($('#property').datagrid('getRows')[16].value == '否') {
+                    return false;
+                }
+            }
+            if (row.name == '静态相对偏心量') {
+                if ($('#property').datagrid('getRows')[19].value == '否') {
+                    return false;
+                }
+            }
+            if (row.name == '动态相对偏心量') {
+                if ($('#property').datagrid('getRows')[21].value == '否') {
+                    return false;
+                }
+            }
+            if (row.name == '线规裸线直径') {
+                if ($('#property').datagrid('getRows')[5].value == '扁线') {
+                    return false;
+                }
+            }
+            if (row.name == '线规裸线窄边尺寸' || row.name == '线规裸线宽边尺寸') {
+                if ($('#property').datagrid('getRows')[5].value == '圆线') {
                     return false;
                 }
             }
@@ -648,6 +705,18 @@ property.dialogs = {
                             value: value
                         }
                     });
+
+                    var id = null, node = null;
+                    $('ul[id^=design]').each(function () {
+                        var eid = $(this).attr('id');
+                        var selectedNode = $('#' + eid).tree('getSelected');
+                        if (selectedNode != null) {
+                            id = eid;
+                            node = selectedNode;
+                        }
+                    })
+                    display.loadImages(node, id)
+
                 }
             }, {
                 text: '取消',
@@ -681,6 +750,19 @@ property.dialogs = {
                             value: value
                         }
                     });
+
+                    var id = null, node = null;
+                    $('ul[id^=design]').each(function () {
+                        var eid = $(this).attr('id');
+                        var selectedNode = $('#' + eid).tree('getSelected');
+                        if (selectedNode != null) {
+                            id = eid;
+                            node = selectedNode;
+                        }
+                    })
+                    display.loadImages(node, id)
+
+
                 }
             }, {
                 text: '取消',
@@ -823,13 +905,97 @@ display.init = function (id, type) {
         });
     $('#' + id).tabs('select', 0);
 }
+display.loadImages = function (node, id, type, data) {
+
+    var content = '';
+    if (node.text == '定子铁心') {
+        var p1 = $('#property').datagrid('getRows')[6].value;
+        switch (p1) {
+            case '全开口矩形槽':
+                content += '<img src="/images/slottype1.jpg">';
+                break;
+            case '半开口矩形槽':
+                content += '<img src="/images/slottype2.jpg">';
+                break;
+            case '半开口圆底槽':
+                content += '<img src="/images/slottype3.jpg">';
+                break;
+            default :
+        }
+        var p2 = $('#property').datagrid('getRows')[16].value;
+        if (p2 == '是') {
+            content += '<img src="/images/sltxty.jpg">'
+        }
+    }
+
+
+    if (node.text == '转子铁心') {
+        var p1 = $('#property').datagrid('getRows')[6].value;
+        switch (p1) {
+            case 'A型槽':
+                content += '<img src="/images/slrotorslottype1.jpg">';
+                break;
+            case 'B型槽':
+                content += '<img src="/images/slrotorslottype2.jpg">';
+                break;
+            case 'C型槽':
+                content += '<img src="/images/slrotorslottype3.jpg">';
+                break;
+            case 'D型槽':
+                content += '<img src="/images/slrotorslottype4.jpg">';
+                break;
+            case 'E型槽':
+                content += '<img src="/images/slrotorslottype5.jpg">';
+                break;
+            case 'F型槽':
+                content += '<img src="/images/slrotorslottype6.jpg">';
+                break;
+            case 'G型槽':
+                content += '<img src="/images/slrotorslottype7.jpg">';
+                break;
+            case 'H型槽':
+                content += '<img src="/images/slrotorslottype8.jpg">';
+                break;
+            default :
+        }
+        var p2 = $('#property').datagrid('getRows')[19].value,
+            p3 = $('#property').datagrid('getRows')[21].value;
+        if (p2 == '是' || p3 == '是') {
+            content += '<img src="/images/slzzpxl.jpg">'
+        }
+    }
+
+
+    $('#' + id + '_display').tabs('select', '图形窗口');
+    $('#' + id + '_display').tabs('update', {
+        tab: $('#' + id + '_display').tabs('getSelected'),
+        options: {
+            content: content
+        }
+    })
+
+
+}
 
 design.init = function (id, type, data) {
     $('#projectName').parent().append('<ul class="design" id="' + id + '"></ul>');
     $('#' + id).tree({
         animate: true,
         onClick: function (node) {
+            $('ul[id^=design]').each(function () {
+                var eid = $(this).attr('id');
+                if (eid != id) {
+                    var selectedNode = $('#' + eid).tree('getSelected');
+                    if (selectedNode != null) {
+                        $('#' + eid).tree('unselect', selectedNode.target);
+                    }
+                }
+            })
+
+            $('#display').tabs('select', parseInt(id.replace('design', '')));
+
             property.init(node);
+            display.loadImages(node, id, type, data);
         },
         onContextMenu: function (e, node) {
             e.preventDefault();
@@ -1089,7 +1255,20 @@ menu.init = function () {
     menu.design();
 }
 
-
+var extend = function () {
+    $.extend($.fn.tree.methods, {
+        unselect: function (jq, target) {
+            return jq.each(function () {
+                var opts = $(this).tree('options');
+                $(target).removeClass('tree-node-selected');
+                if (opts.onUnselect) {
+                    opts.onUnselect.call(this, $(this).tree('getNode', target));
+                }
+            });
+        }
+    });
+}
 $(function () {
+    extend();
     menu.init();
 });
