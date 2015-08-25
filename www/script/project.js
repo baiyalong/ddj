@@ -191,7 +191,6 @@ property.enableCellEditingFilter = function (param) {
             if (param.index == 1 && param.field == 'value') res = true;
             break;
         }
-            ;
         case '定子铁心':
         {
             if (param.field == 'value') res = true;
@@ -199,7 +198,6 @@ property.enableCellEditingFilter = function (param) {
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
         }
-            ;
         case '定子绕组':
         {
             if (param.field == 'value') res = true;
@@ -207,7 +205,6 @@ property.enableCellEditingFilter = function (param) {
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
         }
-            ;
         case '转子铁心':
         {
             if (param.field == 'value') res = true;
@@ -215,7 +212,6 @@ property.enableCellEditingFilter = function (param) {
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
         }
-            ;
         case '转子鼠笼':
         {
             if (param.field == 'value') res = true;
@@ -223,45 +219,37 @@ property.enableCellEditingFilter = function (param) {
             if (param.field == 'unit' && a.indexOf(param.index) == -1) res = true;
             break;
         }
-            ;
         case '解析电磁稳态分析':
         {
             if (param.field == 'value') res = true;
             break;
         }
-            ;
         case '解析电磁暂态分析':
         {
             if (param.field == 'value') res = true;
             break;
         }
-            ;
         case '数值电磁分析':
         {
             if (param.field == 'value') res = true;
             break;
         }
-            ;
         case '网格生成':
         {
             if (param.field == 'value') res = true;
             break;
         }
-            ;
         case '定子机械分析':
         {
             if (param.field == 'value') res = true;
             break;
         }
-            ;
         case '定子端部分析':
         {
             if (param.field == 'value') res = true;
             break;
         }
-            ;
         default:
-
     }
     return res;
 }
@@ -429,6 +417,77 @@ property.init = function (node) {
                 }
             }
 
+            if (row.name == '定子铁心各段长度' || row.name == '定子单个齿周向单元数') {
+                var value = $('#property').datagrid('getRows')[0].value;
+                if (value != '定子铁心' && value != '定子铁心绕组' && value != '定子整机') {
+                    return false;
+                }
+            }
+            if (row.name == '定子单个绕组质量' || row.name == '定子导线绝缘双边厚度'
+                || row.name == '定子线圈匝间绝缘双边厚度' || row.name == '定子线圈对地绝缘双边厚度'
+                || row.name == '定子线圈排间绝缘双边厚度' || row.name == '定子槽楔下垫条厚度'
+                || row.name == '定子槽底垫条厚度' || row.name == '定子裸扁导线排列排数'
+                || row.name == '定子裸扁导线排列方式') {
+                var value = $('#property').datagrid('getRows')[0].value;
+                if (value != '定子绕组' && value != '定子铁心绕组' && value != '定子整机') {
+                    return false;
+                }
+            }
+            if (row.name == '机座材料选择' || row.name == '机座弹性模量'
+                || row.name == '机座泊松比' || row.name == '机座材料密度'
+                || row.name == '定子铁心与机座连接方式'
+                || row.name == '装配过盈量' || row.name == '槽钢轴向长度'
+                || row.name == '设定机座固定约束' || row.name == '固定约束点的数量'
+                || row.name == '固定约束点的坐标' || row.name == '机座剖分类型'
+                || row.name == '机座智能网格剖分等级' || row.name == '机座剖分固定单元边长'
+            ) {
+                var value = $('#property').datagrid('getRows')[0].value;
+                if (value != '定子机座' && value != '定子整机') {
+                    return false;
+                }
+                if (row.name == '装配过盈量') {
+                    if ($('#property').datagrid('getRows')[17].value != '过盈装配') {
+                        return false;
+                    }
+                }
+                if (row.name == '槽钢轴向长度') {
+                    if ($('#property').datagrid('getRows')[17].value != '骨架链接') {
+                        return false;
+                    }
+                }
+                if (row.name == '固定约束点的数量' || row.name == '固定约束点的坐标') {
+                    if ($('#property').datagrid('getRows')[20].value == '否') {
+                        return false;
+                    }
+                }
+                if (row.name == '机座智能网格剖分等级') {
+                    if ($('#property').datagrid('getRows')[17].value != '智能网格剖分') {
+                        return false;
+                    }
+                }
+                if (row.name == '机座剖分固定单元边长') {
+                    if ($('#property').datagrid('getRows')[23].value != '单元边长固定') {
+                        return false;
+                    }
+                }
+
+            }
+            if (row.name == '模态提取最大数量' || row.name == '模态分析最小频率'
+                || row.name == '模态分析最大频率'
+            ) {
+                var value = $('#property').datagrid('getRows')[1].value;
+                if (value != '机械模态特征') {
+                    return false;
+                }
+            }
+            if (row.name == '磁力采样起始机械角度'
+            ) {
+                var value = $('#property').datagrid('getRows')[1].value;
+                if (value != '瞬态响应振动' && value != '瞬态电噪指数' && value != '瞬态电磁噪声') {
+                    return false;
+                }
+            }
+
             //editor
             var col = $(this).datagrid('getColumnOption', 'value');
             var editor = {
@@ -458,6 +517,11 @@ property.init = function (node) {
                 case '定子剖分等级':
                 case '转子剖分等级':
                 case '定子单个齿距单元边数':
+                case '定子端部端箍数量':
+                case '定子单个齿周向单元数':
+                case '定子裸扁导线排列排数':
+                case '固定约束点的数量':
+                case '模态提取最大数量':
                 {
                     editor = {
                         type: 'numberbox',
@@ -731,6 +795,16 @@ property.init = function (node) {
                 case '输入各转子槽圆周长度':
                 {
                     $('#shurugezhuanzicaoyuanzhouchangdu').dialog('open');
+                    return;
+                }
+                case '定子铁心各段长度':
+                {
+                    $('#dingzitiexingeduanchangdu').dialog('open');
+                    return;
+                }
+                case '固定约束点的坐标':
+                {
+                    $('#gudingyueshudiandezuobiao').dialog('open');
                     return;
                 }
                 default:
@@ -1024,6 +1098,63 @@ property.dialogs = {
         });
 
 
+        $('#dingzitiexingeduanchangdu').dialog({
+            title: '定子铁心各段长度',
+            width: 500,
+            height: 500,
+            closed: true,
+            cache: true,
+            modal: true,
+            buttons: [{
+                text: '读取文件',
+                handler: function () {
+
+                }
+            }, {
+                text: '确定',
+                handler: function () {
+                    $('#dingzitiexingeduanchangdu').dialog('close')
+                }
+            }]
+        });
+        $('#dingzitiexingeduanchangdu table').datagrid({
+            columns: [[
+                {field: 'sn', title: '序号', width: 100},
+                {field: 'time', title: '时间(s)', width: 100},
+                {field: 'uab', title: 'Uab(V)', width: 100},
+                {field: 'ubc', title: 'Ubc(V)', width: 100}
+            ]]
+        });
+
+        $('#gudingyueshudiandezuobiao').dialog({
+            title: '固定约束点的坐标',
+            width: 500,
+            height: 500,
+            closed: true,
+            cache: true,
+            modal: true,
+            buttons: [{
+                text: '读取文件',
+                handler: function () {
+
+                }
+            }, {
+                text: '确定',
+                handler: function () {
+                    $('#gudingyueshudiandezuobiao').dialog('close')
+                }
+            }]
+        });
+        $('#gudingyueshudiandezuobiao table').datagrid({
+            columns: [[
+                {field: 'sn', title: '序号', width: 100},
+                {field: 'time', title: '时间(s)', width: 100},
+                {field: 'uab', title: 'Uab(V)', width: 100},
+                {field: 'ubc', title: 'Ubc(V)', width: 100}
+            ]]
+        });
+
+
     }
 };
 
@@ -1297,7 +1428,6 @@ menu.project = function () {
                             }).dialog('open');
                             break;
                         }
-                            ;
                         case '删除':
                         {
                             if (confirm('确认删除项目 ' + $('#projectName').text() + ' 吗？')) {
@@ -1306,7 +1436,6 @@ menu.project = function () {
                             }
                             break;
                         }
-                            ;
                         default:
                     }
                 }
