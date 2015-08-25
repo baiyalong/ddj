@@ -729,7 +729,7 @@
               "unit": null
             },
             {
-              "name": "自然稳态判断",
+              "name": "自动稳态判断",
               "value": "是",
               "unit": null
             },
@@ -765,7 +765,7 @@
             },
             {
               "name": "分析气隙磁密谐波",
-              "value": "1",
+              "value": "是",
               "unit": null
             },
             {
@@ -807,7 +807,86 @@
         },
         "children": [
           {
-            "text": "网格生产"
+            "text": "网格生成",
+            "attributes": {
+              "property": [
+                {
+                  "name": "整圆为解域的倍数 ",
+                  "value": "1",
+                  "unit": null
+                },
+                {
+                  "name": "定子剖分等级 ",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "转子剖分等级 ",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "控制气隙圆周单元数量 ",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "定子单个齿距单元边数 ",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "定子线圈对地绝缘双边厚度 ",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽楔下垫条厚度 ",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽底垫条厚度 ",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子齿内径不完全相同 ",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "定子齿内圆半径 ",
+                  "value": "读取",
+                  "unit": null
+                },
+                {
+                  "name": "定子齿中添加辅助槽 ",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "定子齿中辅助槽口宽度 ",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子齿中辅助槽口高度 ",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽距不完全相同 ",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "输入各转子槽圆周长度 ",
+                  "value": "读取",
+                  "unit": null
+                }
+              ]
+            }
           },
           {
             "text": "文本结果"

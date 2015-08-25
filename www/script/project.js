@@ -242,6 +242,12 @@ property.enableCellEditingFilter = function (param) {
             break;
         }
             ;
+        case '网格生成':
+        {
+            if (param.field == 'value') res = true;
+            break;
+        }
+            ;
         case '定子机械分析':
         {
             if (param.field == 'value') res = true;
@@ -357,6 +363,71 @@ property.init = function (node) {
                 }
             }
 
+            if (row.name == '定子线电压有效值') {
+                if ($('#property').datagrid('getRows')[1].value == '表格输入' || $('#property').datagrid('getRows')[2].value == '表格输入') {
+                    return false;
+                }
+            }
+            if (row.name == '定子线电压采样点数' || row.name == '定子线电压采样表格') {
+                if ($('#property').datagrid('getRows')[1].value == '正弦类型' || $('#property').datagrid('getRows')[2].value == '正弦类型') {
+                    return false;
+                }
+            }
+            if (row.name == '转子转动惯量' || row.name == '转子机械损耗'
+                || row.name == '旋转通风损耗' || row.name == '损耗参考转速'
+                || row.name == '转子负载类型' || row.name == '转子负载变量'
+                || row.name == '转子负载采样点数' || row.name == '转子负载采样表格') {
+                if ($('#property').datagrid('getRows')[5].value == '转速恒定' || $('#property').datagrid('getRows')[6].value == '转速恒定') {
+                    return false;
+                }
+            }
+            if (row.name == '稳态判断精度') {
+                if ($('#property').datagrid('getRows')[20].value == '否' || $('#property').datagrid('getRows')[21].value == '否') {
+                    return false;
+                }
+            }
+
+            if (row.name == '谐波分析方法' || row.name == '谐波分析起始时间'
+                || row.name == '谐波分析最高频率' || row.name == '谐波分析分辨频率'
+                || row.name == '分析气隙磁密谐波' || row.name == '气隙磁密最高阶次'
+                || row.name == '气隙磁密最小幅值' || row.name == '分析气隙磁力谐波'
+                || row.name == '气隙磁力最高阶次' || row.name == '气隙磁力最小幅值'
+                || row.name == '分析步长自动确定' || row.name == '分析步数为2的幂次') {
+                if ($('#property').datagrid('getRows')[23].value == '否') {
+                    return false;
+                }
+                if (row.name == '气隙磁密最高阶次' || row.name == '气隙磁密最小幅值') {
+                    if ($('#property').datagrid('getRows')[28].value == '否') {
+                        return false;
+                    }
+                }
+                if (row.name == '气隙磁力最高阶次' || row.name == '气隙磁力最小幅值') {
+                    if ($('#property').datagrid('getRows')[31].value == '否') {
+                        return false;
+                    }
+                }
+            }
+
+            if (row.name == '定子单个齿距单元边数') {
+                if ($('#property').datagrid('getRows')[3].value == '否') {
+                    return false;
+                }
+            }
+            if (row.name == '定子齿内圆半径') {
+                if ($('#property').datagrid('getRows')[8].value == '否') {
+                    return false;
+                }
+            }
+            if (row.name == '定子齿中辅助槽口宽度' || row.name == '定子齿中辅助槽口高度') {
+                if ($('#property').datagrid('getRows')[10].value == '否') {
+                    return false;
+                }
+            }
+            if (row.name == '输入各转子槽圆周长度') {
+                if ($('#property').datagrid('getRows')[13].value == '否') {
+                    return false;
+                }
+            }
 
             //editor
             var col = $(this).datagrid('getColumnOption', 'value');
@@ -378,6 +449,15 @@ property.init = function (node) {
                 case '线圈截距':
                 case '线规并绕根数':
                 case '转子槽数':
+                case '力波最高阶次':
+                case '定子线电压采样点数':
+                case '转子负载采样点数':
+                case '轴向分段数量':
+                case '气隙磁密最高阶次':
+                case '气隙磁力最高阶次':
+                case '定子剖分等级':
+                case '转子剖分等级':
+                case '定子单个齿距单元边数':
                 {
                     editor = {
                         type: 'numberbox',
@@ -386,6 +466,14 @@ property.init = function (node) {
                             min: 0
                         }
                     }
+                    break;
+                }
+                case '整圆为解域的倍数':
+                {
+                    editor.options.data = [
+                        {value: '1', text: '1'},
+                        {value: '2', text: '2'},
+                    ];
                     break;
                 }
                 case '铁心牌号':
@@ -596,6 +684,10 @@ property.init = function (node) {
                 case '转子静态偏心':
                 case '转子动态偏心':
                 case '定子内圆为椭圆':
+                case '控制气隙圆周单元数量':
+                case '定子齿内径不完全相同':
+                case '定子齿中添加辅助槽':
+                case '转子槽距不完全相同':
                 {
                     editor = {
                         type: 'checkbox',
@@ -611,6 +703,16 @@ property.init = function (node) {
                     $('#dingzixiandianyacaiyang').dialog('open');
                     return;
                 }
+                case '转子负载采样表格':
+                {
+                    $('#zhuanzifuzaicaiyang').dialog('open');
+                    return;
+                }
+                case '网格信息':
+                {
+                    $('#wanggexinxi').dialog('open');
+                    return;
+                }
                 case '定子槽型':
                 {
                     $('#dingzicaoxing').dialog('open');
@@ -619,6 +721,16 @@ property.init = function (node) {
                 case '转子槽类型':
                 {
                     $('#zhuanzicaoxing').dialog('open');
+                    return;
+                }
+                case '定子齿内圆半径':
+                {
+                    $('#dingzichineiyuanbanjing').dialog('open');
+                    return;
+                }
+                case '输入各转子槽圆周长度':
+                {
+                    $('#shurugezhuanzicaoyuanzhouchangdu').dialog('open');
                     return;
                 }
                 default:
@@ -798,6 +910,120 @@ property.dialogs = {
                 {field: 'ubc', title: 'Ubc(V)', width: 100}
             ]]
         });
+
+        $('#zhuanzifuzaicaiyang').dialog({
+            title: '转子负载采样输入表格',
+            width: 500,
+            height: 500,
+            closed: true,
+            cache: true,
+            modal: true,
+            buttons: [{
+                text: '读取文件',
+                handler: function () {
+
+                }
+            }, {
+                text: '确定',
+                handler: function () {
+                    $('#zhuanzifuzaicaiyang').dialog('close')
+                }
+            }]
+        });
+        $('#zhuanzifuzaicaiyang table').datagrid({
+            columns: [[
+                {field: 'sn', title: '序号', width: 100},
+                {field: 'time', title: '时间(s)', width: 100},
+                {field: 'uab', title: 'Uab(V)', width: 100},
+                {field: 'ubc', title: 'Ubc(V)', width: 100}
+            ]]
+        });
+
+        $('#wanggexinxi').dialog({
+            title: '网格信息',
+            width: 500,
+            height: 500,
+            closed: true,
+            cache: true,
+            modal: true,
+            buttons: [{
+                text: '读取文件',
+                handler: function () {
+
+                }
+            }, {
+                text: '确定',
+                handler: function () {
+                    $('#wanggexinxi').dialog('close')
+                }
+            }]
+        });
+        $('#wanggexinxi table').datagrid({
+            columns: [[
+                {field: 'sn', title: '序号', width: 100},
+                {field: 'time', title: '时间(s)', width: 100},
+                {field: 'uab', title: 'Uab(V)', width: 100},
+                {field: 'ubc', title: 'Ubc(V)', width: 100}
+            ]]
+        });
+
+        $('#dingzichineiyuanbanjing').dialog({
+            title: '定子齿内圆半径',
+            width: 500,
+            height: 500,
+            closed: true,
+            cache: true,
+            modal: true,
+            buttons: [{
+                text: '读取文件',
+                handler: function () {
+
+                }
+            }, {
+                text: '确定',
+                handler: function () {
+                    $('#dingzichineiyuanbanjing').dialog('close')
+                }
+            }]
+        });
+        $('#dingzichineiyuanbanjing table').datagrid({
+            columns: [[
+                {field: 'sn', title: '序号', width: 100},
+                {field: 'time', title: '时间(s)', width: 100},
+                {field: 'uab', title: 'Uab(V)', width: 100},
+                {field: 'ubc', title: 'Ubc(V)', width: 100}
+            ]]
+        });
+
+        $('#shurugezhuanzicaoyuanzhouchangdu').dialog({
+            title: '输入各转子槽圆周长度',
+            width: 500,
+            height: 500,
+            closed: true,
+            cache: true,
+            modal: true,
+            buttons: [{
+                text: '读取文件',
+                handler: function () {
+
+                }
+            }, {
+                text: '确定',
+                handler: function () {
+                    $('#shurugezhuanzicaoyuanzhouchangdu').dialog('close')
+                }
+            }]
+        });
+        $('#shurugezhuanzicaoyuanzhouchangdu table').datagrid({
+            columns: [[
+                {field: 'sn', title: '序号', width: 100},
+                {field: 'time', title: '时间(s)', width: 100},
+                {field: 'uab', title: 'Uab(V)', width: 100},
+                {field: 'ubc', title: 'Ubc(V)', width: 100}
+            ]]
+        });
+
+
     }
 };
 
