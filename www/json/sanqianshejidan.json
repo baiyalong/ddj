@@ -1,0 +1,1050 @@
+[
+  {
+    "text": "鼠笼型三相异步电动机",
+    "children": [
+      {
+        "text": "本体结构参数",
+        "children": [
+          {
+            "text": "基本参数",
+            "attributes": {
+              "property": [
+                {
+                  "name": "相数",
+                  "value": 3,
+                  "unit": null
+                },
+                {
+                  "name": "极数",
+                  "value": 2,
+                  "unit": null
+                }
+              ]
+            }
+          },
+          {
+            "text": "定子铁心",
+            "attributes": {
+              "property": [
+                {
+                  "name": "定子外径",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子内径",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子铁心长度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "叠压系数",
+                  "value": "0.97",
+                  "unit": null
+                },
+                {
+                  "name": "铁心牌号",
+                  "value": "50W470",
+                  "unit": null
+                },
+                {
+                  "name": "定子槽数",
+                  "value": "48",
+                  "unit": null
+                },
+                {
+                  "name": "定子槽型",
+                  "value": "全开口矩形槽",
+                  "unit": null
+                },
+                {
+                  "name": "定子槽尺寸Hs0",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽尺寸Hs1",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽尺寸Hs2",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽尺寸Bs0",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽尺寸Bs1",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽尺寸Bs2",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "径向通风道数",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "径向通风道宽度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "铁心电导率",
+                  "value": "0.01",
+                  "unit": "MS/m"
+                },
+                {
+                  "name": "定子内圆为椭圆",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "长轴相对量",
+                  "value": "1",
+                  "unit": null
+                },
+                {
+                  "name": "短轴相对量",
+                  "value": "1",
+                  "unit": null
+                }
+              ]
+            }
+          },
+          {
+            "text": "定子绕组",
+            "attributes": {
+              "property": [
+                {
+                  "name": "定子绕组层数",
+                  "value": "双层",
+                  "unit": null
+                },
+                {
+                  "name": "定子绕组接法",
+                  "value": "星型",
+                  "unit": null
+                },
+                {
+                  "name": "并联支路数",
+                  "value": "1",
+                  "unit": null
+                },
+                {
+                  "name": "每槽导体数",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "线圈截距",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "导线类型",
+                  "value": "扁线",
+                  "unit": null
+                },
+                {
+                  "name": "线规并绕根数",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "线规裸线直径",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "线规裸线窄边尺寸",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "线规裸线宽边尺寸",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "线圈平均半匝长",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "端部伸出单边直径长",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "端部斜边轴向投影长",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "线圈电阻率",
+                  "value": "0",
+                  "unit": "Ωmm^2/m"
+                },
+                {
+                  "name": "槽楔厚度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "槽楔比磁导",
+                  "value": "1",
+                  "unit": null
+                },
+                {
+                  "name": "定子绕组连接类型",
+                  "value": "显极",
+                  "unit": null
+                },
+                {
+                  "name": "定子绕组相序",
+                  "value": "逆时针",
+                  "unit": null
+                },
+                {
+                  "name": "定子槽号排序",
+                  "value": "逆时针",
+                  "unit": null
+                },
+                {
+                  "name": "定子线圈形状",
+                  "value": "入槽在右边",
+                  "unit": null
+                }
+              ]
+            }
+          },
+          {
+            "text": "转子铁心",
+            "attributes": {
+              "property": [
+                {
+                  "name": "转子外径",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子内径",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子铁心长度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "叠压系数",
+                  "value": "0.97",
+                  "unit": null
+                },
+                {
+                  "name": "铁心牌号",
+                  "value": "50W470",
+                  "unit": null
+                },
+                {
+                  "name": "转子槽数",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "转子槽类型",
+                  "value": "A型槽",
+                  "unit": null
+                },
+                {
+                  "name": "转子槽尺寸Hr0",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽尺寸Hr1",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽尺寸Hr2",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽尺寸Br0",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽尺寸Br1",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽尺寸Br2",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽尺寸Br3",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽尺寸Br4",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "径向通风道数",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "径向通风道宽度",
+                  "value": "10",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "铁心电导率",
+                  "value": "0.01",
+                  "unit": "MS/m"
+                },
+                {
+                  "name": "斜槽圆周长度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子静态偏心",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "静态相对偏心量",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "转子动态偏心",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "动态相对偏心量",
+                  "value": "0",
+                  "unit": null
+                }
+              ]
+            }
+          },
+          {
+            "text": "转子鼠笼",
+            "attributes": {
+              "property": [
+                {
+                  "name": "导条总长",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "端环平均直径",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "端环宽度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "端环高度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "导条电阻率",
+                  "value": "0",
+                  "unit": "Ω(mm)^2/m"
+                },
+                {
+                  "name": "端环电阻率",
+                  "value": "0",
+                  "unit": "Ω(mm)^2/m"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "text": "解析电磁稳态分析",
+        "attributes": {
+          "property": [
+            {
+              "name": "定子线电压",
+              "value": "0",
+              "unit": "伏"
+            },
+            {
+              "name": "线电压频率",
+              "value": "0",
+              "unit": "赫兹"
+            },
+            {
+              "name": "转子转差率",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "力波最高阶次",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "求解方法",
+              "value": "解法1",
+              "unit": null
+            }
+          ]
+        },
+        "children": [
+          {
+            "text": "文本结果"
+          },
+          {
+            "text": "曲线结果"
+          }
+        ]
+      },
+      {
+        "text": "解析电磁暂态分析",
+        "attributes": {
+          "property": [
+            {
+              "name": "定子电压基波频率",
+              "value": "0",
+              "unit": "赫兹"
+            },
+            {
+              "name": "定子机端电压类型",
+              "value": "正弦类型",
+              "unit": null
+            },
+            {
+              "name": "定子线电压有效值",
+              "value": "0",
+              "unit": "伏"
+            },
+            {
+              "name": "定子线电压采样点数",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "定子线电压采样表格",
+              "value": "读取",
+              "unit": null
+            },
+            {
+              "name": "转子旋转类型",
+              "value": "转速恒定",
+              "unit": null
+            },
+            {
+              "name": "转子转动惯量",
+              "value": "0",
+              "unit": "千克平方米"
+            },
+            {
+              "name": "转子机械损耗",
+              "value": "0",
+              "unit": "千瓦"
+            },
+            {
+              "name": "旋转通风损耗",
+              "value": "0",
+              "unit": "千瓦"
+            },
+            {
+              "name": "损耗参考转速",
+              "value": "0",
+              "unit": "转每分"
+            },
+            {
+              "name": "转子负载类型",
+              "value": "输出转矩",
+              "unit": null
+            },
+            {
+              "name": "转子负载变量",
+              "value": "时间",
+              "unit": null
+            },
+            {
+              "name": "转子负载采样点数",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "转子负载采样表格",
+              "value": "读取",
+              "unit": null
+            },
+            {
+              "name": "转子起始角度",
+              "value": "0",
+              "unit": "度"
+            },
+            {
+              "name": "转子起始转速",
+              "value": "0",
+              "unit": "转每分"
+            },
+            {
+              "name": "仿真时间长度",
+              "value": "10",
+              "unit": "秒"
+            },
+            {
+              "name": "仿真步长",
+              "value": "0.001",
+              "unit": "秒"
+            },
+            {
+              "name": "仿真精度",
+              "value": "0.1",
+              "unit": null
+            },
+            {
+              "name": "解方程龙格库塔法",
+              "value": "显式四阶",
+              "unit": null
+            },
+            {
+              "name": "自动稳态判断",
+              "value": "是",
+              "unit": null
+            },
+            {
+              "name": "稳态判断精度",
+              "value": "0.05",
+              "unit": null
+            }
+          ]
+        },
+        "children": [
+          {
+            "text": "曲线结果"
+          }
+        ]
+      },
+      {
+        "text": "数值电磁分析",
+        "attributes": {
+          "property": [
+            {
+              "name": "网格信息",
+              "value": "读取",
+              "unit": null
+            },
+            {
+              "name": "定子电压基波频率",
+              "value": "0",
+              "unit": "赫兹"
+            },
+            {
+              "name": "定子机端电压类型",
+              "value": "正弦类型",
+              "unit": null
+            },
+            {
+              "name": "定子线电压有效值",
+              "value": "0",
+              "unit": "伏"
+            },
+            {
+              "name": "定子线电压采样点数",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "定子线电压采样表格",
+              "value": "读取",
+              "unit": null
+            },
+            {
+              "name": "转子旋转类型",
+              "value": "转速恒定",
+              "unit": null
+            },
+            {
+              "name": "转子转动惯量",
+              "value": "0",
+              "unit": "千克平方米"
+            },
+            {
+              "name": "转子机械损耗",
+              "value": "0",
+              "unit": "千瓦"
+            },
+            {
+              "name": "旋转通风损耗",
+              "value": "0",
+              "unit": "千瓦"
+            },
+            {
+              "name": "损耗参考转速",
+              "value": "0",
+              "unit": "转每分"
+            },
+            {
+              "name": "转子负载类型",
+              "value": "输出转矩",
+              "unit": null
+            },
+            {
+              "name": "转子负载变量",
+              "value": "时间",
+              "unit": null
+            },
+            {
+              "name": "转子负载采样点数",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "转子负载采样表格",
+              "value": "读取",
+              "unit": null
+            },
+            {
+              "name": "转子起始角度",
+              "value": "0",
+              "unit": "度"
+            },
+            {
+              "name": "转子起始转速",
+              "value": "0",
+              "unit": "转每分"
+            },
+            {
+              "name": "仿真时间长度",
+              "value": "10",
+              "unit": "秒"
+            },
+            {
+              "name": "仿真步长",
+              "value": "0.001",
+              "unit": "秒"
+            },
+            {
+              "name": "仿真精度",
+              "value": "0.1",
+              "unit": null
+            },
+            {
+              "name": "轴向分段数量",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "自动稳态判断",
+              "value": "是",
+              "unit": null
+            },
+            {
+              "name": "稳态判断精度",
+              "value": "0.05",
+              "unit": null
+            },
+            {
+              "name": "谐波分析",
+              "value": "是",
+              "unit": null
+            },
+            {
+              "name": "谐波分析方法",
+              "value": "方法1",
+              "unit": null
+            },
+            {
+              "name": "谐波分析起始时间",
+              "value": "0.4",
+              "unit": null
+            },
+            {
+              "name": "谐波分析最高频率",
+              "value": "3000",
+              "unit": null
+            },
+            {
+              "name": "谐波分析分辨频率",
+              "value": "10",
+              "unit": null
+            },
+            {
+              "name": "分析气隙磁密谐波",
+              "value": "是",
+              "unit": null
+            },
+            {
+              "name": "气隙磁密最高阶次",
+              "value": "250",
+              "unit": null
+            },
+            {
+              "name": "气隙磁密最小幅值",
+              "value": "0.001",
+              "unit": "特"
+            },
+            {
+              "name": "分析气隙磁力谐波",
+              "value": "是",
+              "unit": null
+            },
+            {
+              "name": "气隙磁力最高阶次",
+              "value": "10",
+              "unit": null
+            },
+            {
+              "name": "气隙磁力最小幅值",
+              "value": "10",
+              "unit": "帕"
+            },
+            {
+              "name": "分析步长自动确定",
+              "value": "是",
+              "unit": null
+            },
+            {
+              "name": "分析步数为2的幂次",
+              "value": "是",
+              "unit": null
+            }
+          ]
+        },
+        "children": [
+          {
+            "text": "网格生成",
+            "attributes": {
+              "property": [
+                {
+                  "name": "整圆为解域的倍数",
+                  "value": "1",
+                  "unit": null
+                },
+                {
+                  "name": "定子剖分等级",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "转子剖分等级",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "控制气隙圆周单元数量",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "定子单个齿距单元边数",
+                  "value": "0",
+                  "unit": null
+                },
+                {
+                  "name": "定子线圈对地绝缘双边厚度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽楔下垫条厚度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子槽底垫条厚度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子齿内径不完全相同",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "定子齿内圆半径",
+                  "value": "读取",
+                  "unit": null
+                },
+                {
+                  "name": "定子齿中添加辅助槽",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "定子齿中辅助槽口宽度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "定子齿中辅助槽口高度",
+                  "value": "0",
+                  "unit": "毫米"
+                },
+                {
+                  "name": "转子槽距不完全相同",
+                  "value": "是",
+                  "unit": null
+                },
+                {
+                  "name": "输入各转子槽圆周长度",
+                  "value": "读取",
+                  "unit": null
+                }
+              ]
+            }
+          },
+          {
+            "text": "文本结果"
+          },
+          {
+            "text": "曲线结果"
+          }
+        ]
+      },
+      {
+        "text": "定子机械分析",
+        "attributes": {
+          "property": [
+            {
+              "name": "分析结构类型",
+              "value": "定子铁心绕组",
+              "unit": null
+            },
+            {
+              "name": "分析计算类型",
+              "value": "机械模态特性",
+              "unit": null
+            },
+            {
+              "name": "定子铁心各段长度",
+              "value": "输入",
+              "unit": null
+            },
+            {
+              "name": "定子单个齿周向单元数",
+              "value": "2",
+              "unit": null
+            },
+            {
+              "name": "定子单个绕组质量",
+              "value": "2.474",
+              "unit": "千克"
+            },
+            {
+              "name": "定子导线绝缘双边厚度",
+              "value": "0",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子线圈匝间绝缘双边厚度",
+              "value": "0.4",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子线圈对地绝缘双边厚度",
+              "value": "3.2",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子线圈排间绝缘双边厚度",
+              "value": "0",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子槽垫下垫条厚度",
+              "value": "1",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子槽底垫条厚度",
+              "value": "0.5",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子裸扁导线排列排数",
+              "value": "1",
+              "unit": null
+            },
+            {
+              "name": "定子裸扁导线排列方式",
+              "value": "单根单排",
+              "unit": null
+            },
+            {
+              "name": "基座材料选择",
+              "value": "钢材",
+              "unit": null
+            },
+            {
+              "name": "基座弹簧模量",
+              "value": "205.8",
+              "unit": "千兆帕"
+            },
+            {
+              "name": "基座泊松比",
+              "value": "0.3",
+              "unit": null
+            },
+            {
+              "name": "基座材料密度",
+              "value": "7800",
+              "unit": "千克每立方米"
+            },
+            {
+              "name": "定子铁心与基座连接方式",
+              "value": "过盈装配",
+              "unit": null
+            },
+            {
+              "name": "装配过盈量",
+              "value": "0",
+              "unit": "毫米"
+            },
+            {
+              "name": "槽钢轴向长度",
+              "value": "0",
+              "unit": "毫米"
+            },
+            {
+              "name": "设定基座固定约束",
+              "value": "是",
+              "unit": null
+            },
+            {
+              "name": "固定约束点的数量",
+              "value": "0",
+              "unit": null
+            },
+            {
+              "name": "固定约束点的坐标",
+              "value": "输入",
+              "unit": null
+            },
+            {
+              "name": "基座剖分类型",
+              "value": "智能网格剖分",
+              "unit": null
+            },
+            {
+              "name": "基座智能网格剖分等级",
+              "value": "5",
+              "unit": null
+            },
+            {
+              "name": "基座剖分固定单元边长",
+              "value": "0",
+              "unit": "毫米"
+            },
+            {
+              "name": "模态提取最大数量",
+              "value": "150",
+              "unit": null
+            },
+            {
+              "name": "模态分析最小频率",
+              "value": "10",
+              "unit": "赫兹"
+            },
+            {
+              "name": "模态分析最大频率",
+              "value": "3000",
+              "unit": "赫兹"
+            },
+            {
+              "name": "磁力采样起始机械角度",
+              "value": "0",
+              "unit": "度"
+            }
+          ]
+        },
+        "children": [
+          {
+            "text": "文本结果"
+          }
+        ]
+      },
+      {
+        "text": "定子端部分析",
+        "attributes": {
+          "property": [
+            {
+              "name": "输出功率",
+              "value": "0",
+              "unit": "kW"
+            },
+            {
+              "name": "定子线电流",
+              "value": "0",
+              "unit": "安培"
+            },
+            {
+              "name": "定子线电压",
+              "value": "0",
+              "unit": "伏"
+            },
+            {
+              "name": "定子频率",
+              "value": "50",
+              "unit": "赫兹"
+            },
+            {
+              "name": "定子楔下垫条厚度",
+              "value": "1",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子槽底垫条厚度",
+              "value": "1",
+              "unit": "毫米"
+            },
+            {
+              "name": "定子端部端箍数量",
+              "value": "1",
+              "unit": null
+            },
+            {
+              "name": "定子端部端箍面积",
+              "value": "0",
+              "unit": "平方毫米"
+            }
+          ]
+        },
+        "children": [
+          {
+            "text": "文本结果"
+          }
+        ]
+      }
+    ]
+  }
+]

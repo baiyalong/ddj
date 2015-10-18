@@ -10,6 +10,7 @@
     <script type="text/javascript" src="/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="/script/user.js"></script>
+    <script type="text/javascript" src="/script/dll.js"></script>
     <script type="text/javascript" src="/script/project.js"></script>
     <script type="text/javascript" src="/script/event.js"></script>
 </head>
@@ -75,6 +76,8 @@
             </div>
             <div data-options="iconCls:'icon-remove'">Delete</div>
             <div>Select All</div>
+            <div class="menu-sep"></div>
+            <div id="CIMPredictFr">电磁力波预测</div>
         </div>
         <div id="mm2" style="width:100px;">
             <div>Help</div>
@@ -97,6 +100,58 @@
                 <br/>
                 <input type="radio" name="designType" value="raoxian"/>绕线型三相异步电动机
             </div>
+            <div id="CIMPredictFrDialog">
+                <table>
+                    <tr>
+                        <td>
+                            电机级数：
+                        </td>
+                        <td>
+                            <input type="number" min="0" name="P" class="easyui-textbox"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            电压频率(Hz)：
+                        </td>
+                        <td>
+                            <input type="number" min="0" name="F" class="easyui-textbox"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            定子槽数：
+                        </td>
+                        <td>
+                            <input type="number" min="0" name="Q1" class="easyui-textbox"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            转子槽数：
+                        </td>
+                        <td>
+                            <input type="number" min="0" name="Q2" class="easyui-textbox"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            转子转速(r/min)：
+                        </td>
+                        <td>
+                            <input type="number" min="0" name="N_r" class="easyui-textbox"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            力波最高阶次(0-20)：
+                        </td>
+                        <td>
+                            <input type="number" min="0" name="Frmax" class="easyui-textbox"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div data-options="region:'west',split:true,title:'项目管理'" style="width: 20%;" id="projectManagementRegion">
@@ -117,6 +172,21 @@
                 </div>
                 <div id="calculateNodeContextMenu" class="easyui-menu">
                     <div>计算</div>
+                </div>
+                <div id="IMEmEcSteadCal2ContextMenu" class="easyui-menu">
+                    <div>电磁分析-稳态（解析法）</div>
+                </div>
+                <div id="IMEmEcTransCal2ContextMenu" class="easyui-menu">
+                    <div>电磁分析-暂态（解析法）</div>
+                    <div>电磁分析-暂态（数值法）</div>
+                    <div>电磁分析-暂态（数值法）->网格生成</div>
+                </div>
+                <div id="IMMeEcStatorCal2ContextMenu" class="easyui-menu">
+                    <div>机械分析-定子（解析法）</div>
+                    <div>机械分析-定子（数值法）</div>
+                </div>
+                <div id="IMDbEcStatorCal2ContextMenu" class="easyui-menu">
+                    <div>端部分析-定子（解析法）</div>
                 </div>
             </div>
             <div data-options="region:'south',split:true,title:'属性'" style="height: 50%">

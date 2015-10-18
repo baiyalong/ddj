@@ -1212,16 +1212,93 @@ design.contextMenu = function (e, node) {
             break;
         }
         case '解析电磁稳态分析':
-        case '解析电磁暂态分析':
-        case '数值电磁分析':
-        case '定子机械分析':
-        case '定子端部分析':
         {
-            $('#calculateNodeContextMenu').menu('show', {
+            $('#IMEmEcSteadCal2ContextMenu').menu('show', {
                 left: e.pageX,
                 top: e.pageY,
                 onClick: function (item) {
-
+                    var design = null;
+                    project.designs.forEach(function (ee) {
+                        var data = $('#' + ee.id).tree('getParent', e.target);
+                        if (data != null) {
+                            design = ee.id;
+                        }
+                    })
+                    dll.IMEmEcSteadCal2(design);
+                }
+            });
+            break;
+        }
+        case '解析电磁暂态分析':
+        {
+            $('#IMEmEcTransCal2ContextMenu').menu('show', {
+                left: e.pageX,
+                top: e.pageY,
+                onClick: function (item) {
+                    var design = null;
+                    project.designs.forEach(function (ee) {
+                        var data = $('#' + ee.id).tree('getParent', e.target);
+                        if (data != null) {
+                            design = ee.id;
+                        }
+                    })
+                    switch (item.text) {
+                        case '电磁分析-暂态（解析法）':
+                            dll.IMEmEcTransCal2(design);
+                            break;
+                        case '电磁分析-暂态（数值法）':
+                            dll.IMEmSzTransCal2(design);
+                            break;
+                        case '电磁分析-暂态（数值法）->网格生成':
+                            dll.IMEmSzTransMesh2(design);
+                            break;
+                        default:
+                    }
+                }
+            });
+            break;
+        }
+        case '数值电磁分析':
+            break;
+        case '定子机械分析':
+        {
+            $('#IMMeEcStatorCal2ContextMenu').menu('show', {
+                left: e.pageX,
+                top: e.pageY,
+                onClick: function (item) {
+                    var design = null;
+                    project.designs.forEach(function (ee) {
+                        var data = $('#' + ee.id).tree('getParent', e.target);
+                        if (data != null) {
+                            design = ee.id;
+                        }
+                    })
+                    switch (item.text) {
+                        case '机械分析-定子（解析法）':
+                            dll.IMMeEcStatorCal2(design);
+                            break;
+                        case '机械分析-定子（数值法）':
+                            dll.IMMeSzStatorCal2(design);
+                            break;
+                    }
+                }
+            });
+            break;
+        }
+        case '定子端部分析':
+        {
+            $('#IMDbEcStatorCal2ContextMenu').menu('show', {
+                left: e.pageX,
+                top: e.pageY,
+                onClick: function (item) {
+                    var design = null;
+                    project.designs.forEach(function (ee) {
+                        var data = $('#' + ee.id).tree('getParent', e.target);
+                        if (data != null) {
+                            design = ee.id;
+                        }
+                    })
+                    dll.IMDbEcStatorCal2(design);
                 }
             });
             break;
@@ -1413,6 +1490,9 @@ menu.project = function () {
             }
         });
     });
+    $('#CIMPredictFr').on('click', function () {
+        $('#CIMPredictFrDialog').dialog('open');
+    })
     var projectNameContextMenu = function () {
         $('#projectName').bind('contextmenu', function (e) {
             e.preventDefault();
@@ -1567,7 +1647,34 @@ menu.project = function () {
             }
         }]
     });
-
+    $('#CIMPredictFrDialog').dialog({
+        title: '电磁力波预测',
+        width: 400,
+        height: 300,
+        closed: true,
+        cache: false,
+        modal: true,
+        buttons: [{
+            text: '预测',
+            handler: function () {
+                var param = {
+                    P: $('input[name="P"]').val(),
+                    F: $('input[name="F"]').val(),
+                    Q1: $('input[name="Q1"]').val(),
+                    Q2: $('input[name="Q2"]').val(),
+                    N_r: $('input[name="N_r"]').val(),
+                    Frmax: $('input[name="Frmax"]').val(),
+                }
+                dll.IMPredictFr2(param)
+                $('#CIMPredictFrDialog').dialog('close');
+            }
+        }, {
+            text: '取消',
+            handler: function () {
+                $('#CIMPredictFrDialog').dialog('close');
+            }
+        }]
+    });
 }
 
 menu.design = function () {
