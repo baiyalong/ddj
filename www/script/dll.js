@@ -116,27 +116,143 @@ var dll = {
         })
 
     },
-    IMEmEcSteadCal2:function(){},
-    IMEmEcTransCal2:function(){},
-    IMEmSzTransCal2:function(){},
-    IMEmSzTransMesh2:function(){},
-    IMMeEcStatorCal2:function(){},
-    IMMeSzStatorCal2:function(){},
-    IMPredictFr2:function(param){
+    IMEmEcSteadCal2: function () {
+    },
+    IMEmEcTransCal2: function () {
+    },
+    IMEmSzTransCal2: function () {
+    },
+    IMEmSzTransMesh2: function (design) {
+        var root = $('#' + design).tree('getRoot');
+        var data = $('#' + design).tree('getData', root.target);
+        $.post('/api/dll/IMMeEcStatorCal2', {
+            user: user.user.name,
+            project: project.name,
+            design: design,
+            timestamp: new Date(),
+            D1: parseInt(data.children[0].children[1].attributes.property[0].value),
+            DI1: parseInt(data.children[0].children[1].attributes.property[1].value),
+            Q1: parseInt(data.children[0].children[1].attributes.property[5].value),
+            SSlotType: (function (s) {
+                var res = 0;
+                switch (s) {
+                    case '全开口矩形槽':
+                        res = 1;
+                        break;
+                    case '半开口矩形槽':
+                        res = 2;
+                        break;
+                    case '半开口圆底槽':
+                        res = 3;
+                        break;
+                }
+                return res;
+            })(data.children[0].children[1].attributes.property[6].value),
+            BS0: parseInt(data.children[0].children[1].attributes.property[10].value),
+            BS1: parseInt(data.children[0].children[1].attributes.property[11].value),
+            BS2: parseInt(data.children[0].children[1].attributes.property[12].value),
+            HS0: parseInt(data.children[0].children[1].attributes.property[7].value),
+            HS1: parseInt(data.children[0].children[1].attributes.property[8].value),
+            HS2: parseInt(data.children[0].children[1].attributes.property[9].value),
+            swlay: (function (s) {
+                var res = 0;
+                switch (s) {
+                    case '单层':
+                        res = 1;
+                        break;
+                    case '双层':
+                        res = 2;
+                        break;
+                }
+                return res;
+            })(data.children[0].children[2].attributes.property[0].value),
 
-        $.post('/api/dll/IMPredictFr2',{
+
+        }, function (data, status) {
+            console.log(data, status)
+        })
+    },
+    IMMeEcStatorCal2: function (design) {
+        var root = $('#' + design).tree('getRoot');
+        var data = $('#' + design).tree('getData', root.target);
+        $.post('/api/dll/IMMeEcStatorCal2', {
+            user: user.user.name,
+            project: project.name,
+            design: design,
+            timestamp: new Date(),
+            P: data.children[0].children[0].attributes.property[1].value,
+            DI1: parseInt(data.children[0].children[1].attributes.property[1].value),
+            D1: parseInt(data.children[0].children[1].attributes.property[0].value),
+            SCL: parseInt(data.children[0].children[1].attributes.property[2].value),
+            Q1: parseInt(data.children[0].children[1].attributes.property[5].value),
+            NK1: parseInt(data.children[0].children[1].attributes.property[13].value),
+            BK1: parseInt(data.children[0].children[1].attributes.property[14].value),
+            Kfes: parseInt(data.children[0].children[1].attributes.property[3].value),
+            SSlotType: (function (s) {
+                var res = 0;
+                switch (s) {
+                    case '全开口矩形槽':
+                        res = 1;
+                        break;
+                    case '半开口矩形槽':
+                        res = 2;
+                        break;
+                    case '半开口圆底槽':
+                        res = 3;
+                        break;
+                }
+                return res;
+            })(data.children[0].children[1].attributes.property[6].value),
+            BS0: parseInt(data.children[0].children[1].attributes.property[10].value),
+            BS1: parseInt(data.children[0].children[1].attributes.property[11].value),
+            BS2: parseInt(data.children[0].children[1].attributes.property[12].value),
+            HS0: parseInt(data.children[0].children[1].attributes.property[7].value),
+            HS1: parseInt(data.children[0].children[1].attributes.property[8].value),
+            HS2: parseInt(data.children[0].children[1].attributes.property[9].value),
+            swlay: (function (s) {
+                var res = 0;
+                switch (s) {
+                    case '单层':
+                        res = 1;
+                        break;
+                    case '双层':
+                        res = 2;
+                        break;
+                }
+                return res;
+            })(data.children[0].children[2].attributes.property[0].value),
+            Z1: parseInt(data.children[0].children[2].attributes.property[3].value),
+            A1S: parseInt(data.children[0].children[2].attributes.property[8].value),
+            B1S: parseInt(data.children[0].children[2].attributes.property[9].value),
+            N1: parseInt(data.children[0].children[2].attributes.property[6].value),
+            CLZ1: parseInt(data.children[0].children[2].attributes.property[10].value),
+            OrdeMax: 0,
+            Ordefr0: 0,
+            Freqfr0: 0,
+            Amplfr0: 0,
+            FlagCal: 0
+
+        }, function (data, status) {
+            console.log(data, status)
+        })
+    },
+    IMMeSzStatorCal2: function () {
+    },
+    IMPredictFr2: function (param) {
+
+        $.post('/api/dll/IMPredictFr2', {
             user: user.user.name,
             project: project.name,
             design: '',
             timestamp: new Date(),
-            P:param.P,
-            F:param.F,
-            Q1:param.Q1,
-            Q2:param.Q2,
-            N_r:param.N_r,
-            Frmax:param.Frmax
-        },function(data,status){
-            console.log(data,status)
+            P: param.P,
+            F: param.F,
+            Q1: param.Q1,
+            Q2: param.Q2,
+            N_r: param.N_r,
+            Frmax: param.Frmax
+        }, function (data, status) {
+            console.log(data, status)
         })
     }
 }
