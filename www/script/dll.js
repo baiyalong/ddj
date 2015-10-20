@@ -166,7 +166,7 @@ var dll = {
                 }
                 return res;
             })(data.children[0].children[2].attributes.property[0].value),
-
+            USPW:''
 
         }, function (data, status) {
             console.log(data, status)
