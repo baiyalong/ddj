@@ -116,11 +116,41 @@ var dll = {
         })
 
     },
-    IMEmEcSteadCal2: function () {
+    IMEmEcSteadCal2: function (design) {
+        var root = $('#' + design).tree('getRoot');
+        var data = $('#' + design).tree('getData', root.target);
+        $.post('/api/dll/IMEmEcSteadCal2', {
+            user: user.user.name,
+            project: project.name,
+            design: design,
+            timestamp: new Date(),
+        }, function (data, status) {
+            console.log(data, status)
+        })
     },
-    IMEmEcTransCal2: function () {
+    IMEmEcTransCal2: function (design) {
+        var root = $('#' + design).tree('getRoot');
+        var data = $('#' + design).tree('getData', root.target);
+        $.post('/api/dll/IMEmEcTransCal2', {
+            user: user.user.name,
+            project: project.name,
+            design: design,
+            timestamp: new Date(),
+        }, function (data, status) {
+            console.log(data, status)
+        })
     },
-    IMEmSzTransCal2: function () {
+    IMEmSzTransCal2: function (design) {
+        var root = $('#' + design).tree('getRoot');
+        var data = $('#' + design).tree('getData', root.target);
+        $.post('/api/dll/IMEmSzTransCal2', {
+            user: user.user.name,
+            project: project.name,
+            design: design,
+            timestamp: new Date(),
+        }, function (data, status) {
+            console.log(data, status)
+        })
     },
     IMEmSzTransMesh2: function (design) {
         var root = $('#' + design).tree('getRoot');
@@ -166,7 +196,7 @@ var dll = {
                 }
                 return res;
             })(data.children[0].children[2].attributes.property[0].value),
-            USPW:''
+            USPW: ''
 
         }, function (data, status) {
             console.log(data, status)
@@ -236,7 +266,17 @@ var dll = {
             console.log(data, status)
         })
     },
-    IMMeSzStatorCal2: function () {
+    IMMeSzStatorCal2: function (design) {
+        var root = $('#' + design).tree('getRoot');
+        var data = $('#' + design).tree('getData', root.target);
+        $.post('/api/dll/IMMeSzStatorCal2', {
+            user: user.user.name,
+            project: project.name,
+            design: design,
+            timestamp: new Date(),
+        }, function (data, status) {
+            console.log(data, status)
+        })
     },
     IMPredictFr2: function (param) {
 
